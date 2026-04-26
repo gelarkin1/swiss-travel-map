@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Switzerland & Paris Travel Map — May 3–12, 2026</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0f172a; color: #e2e8f0; }
+  #header {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    padding: 20px 30px;
+    border-bottom: 2px solid #334155;
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  }
+  #header h1 { font-size: 1.5rem; color: #f1f5f9; }
+  #header h1 span { color: #f43f5e; }
+  #header p { color: #94a3b8; font-size: 0.9rem; }
+  #map { width: 100%; height: calc(100vh - 320px); min-height: 450px; }
+  #legend {
+    background: #1e293b; padding: 18px 30px; border-top: 2px solid #334155;
+    display: flex; flex-wrap: wrap; gap: 14px 28px; justify-content: center;
+  }
+  .leg-item { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; color: #cbd5e1; }
+  .leg-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3); flex-shrink: 0; }
+  #timeline {
+    background: #1e293b; padding: 14px 30px; border-top: 1px solid #334155;
+    display: flex; gap: 0; overflow-x: auto; justify-content: center;
+  }
+  .day-btn {
+    background: #334155; color: #94a3b8; border: none; padding: 8px 16px;
+    cursor: pointer; font-size: 0.78rem; font-weight: 600; transition: all 0.2s;
+    border-right: 1px solid #475569; white-space: nowrap;
+  }
+  .day-btn:first-child { border-radius: 8px 0 0 8px; }
+  .day-btn:last-child { border-radius: 0 8px 8px 0; border-right: none; }
+  .day-btn:hover { background: #475569; color: #f1f5f9; }
+  .day-btn.active { background: #f43f5e; color: #fff; }
+  .day-btn.all { background: #6366f1; color: #fff; }
+
+  /* Popup styling */
+  .leaflet-popup-content-wrapper {
+    background: #1e293b !important; color: #e2e8f0 !important;
+    border-radius: 12px !important; border: 1px solid #475569 !important;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5) !important;
+  }
+  .leaflet-popup-tip { background: #1e293b !important; }
+  .leaflet-popup-content { margin: 12px 16px !important; line-height: 1.5; }
+  .popup-title { font-weight: 700; font-size: 1rem; color: #f1f5f9; margin-bottom: 4px; }
+  .popup-day { font-size: 0.75rem; color: #f43f5e; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .popup-detail { font-size: 0.82rem; color: #94a3b8; margin-top: 4px; }
+  .popup-type { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; margin-top: 6px; }
+
+  /* Custom marker */
+  .custom-marker {
+    display: flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: 50%;
+    font-size: 14px; font-weight: 700; color: #fff;
+    border: 3px solid rgba(255,255,255,0.4);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.4);
+  }
+  .route-label {
+    background: rgba(15,23,42,0.85); color: #f1f5f9; padding: 2px 8px;
+    border-radius: 6px; font-size: 11px; font-weight: 600; white-space: nowrap;
+    border: 1px solid #475569;
+  }
+</style>
+</head>
+<body>
+<div id="header">
+  <div>
+    <h1>🇨🇭 Switzerland & Paris <span>Travel Map</span></h1>
+    <p>George & Christina · May 3–12, 2026 · 10 Days</p>
+  </div>
+</div>
+<div id="timeline">
+  <button class="day-btn all active" onclick="showAll()">All Days</button>
+  <button class="day-btn" onclick="showDay(1)">D1 Zermatt</button>
+  <button class="day-btn" onclick="showDay(2)">D2 Glacier Exp</button>
+  <button class="day-btn" onclick="showDay(3)">D3 → Lucerne</button>
+  <button class="day-btn" onclick="showDay(4)">D4 Pilatus</button>
+  <button class="day-btn" onclick="showDay(5)">D5 Jungfraujoch</button>
+  <button class="day-btn" onclick="showDay(6)">D6 Mürren</button>
+  <button class="day-btn" onclick="showDay(7)">D7 → Paris</button>
+  <button class="day-btn" onclick="showDay(8)">D8 Paris</button>
+  <button class="day-btn" onclick="showDay(9)">D9 → Zürich</button>
+  <button class="day-btn" onclick="showDay(10)">D10 Fly Home</button>
+</div>
+<div id="map"></div>
+<div id="legend"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+// ─── Color palette per day ───
+const dayColors = {
+  1: '#f43f5e', 2: '#f97316', 3: '#eab308', 4: '#22c55e', 5: '#06b6d4',
+  6: '#8b5cf6', 7: '#ec4899', 8: '#6366f1', 9: '#14b8a6', 10: '#64748b'
+};
+const dayLabels = {
+  1: 'Day 1 · Zermatt', 2: 'Day 2 · Glacier Express', 3: 'Day 3 · St. Moritz → Lucerne',
+  4: 'Day 4 · Mt. Pilatus', 5: 'Day 5 · Jungfraujoch', 6: 'Day 6 · Mürren & Schilthorn',
+  7: 'Day 7 · → Paris', 8: 'Day 8 · Paris', 9: 'Day 9 · Paris → Zürich', 10: 'Day 10 · Fly Home'
+};
+
+// ─── Places data ───
+const places = [
+  // Day 1 — Zermatt
+  { day: 1, name: 'Zürich Airport (ZRH)', lat: 47.4582, lng: 8.5555, type: 'transit', detail: 'Arrive 12:30 PM from ATL · Activate Swiss Travel Pass' },
+  { day: 1, name: 'Zermatt', lat: 46.0207, lng: 7.7491, type: 'overnight', detail: 'Car-free village · Base for Matterhorn views' },
+  { day: 1, name: 'Gornergrat', lat: 45.9833, lng: 7.7858, type: 'highlight', detail: '3,089m panorama via rack railway · Matterhorn views ⭐' },
+  { day: 1, name: 'Kirchbrücke & Petit Village', lat: 46.0195, lng: 7.7480, type: 'activity', detail: 'Quick Matterhorn viewpoint · 6 min walk from Airbnb' },
+
+  // Day 2 — Glacier Express
+  { day: 2, name: 'Zermatt Station', lat: 46.0207, lng: 7.7491, type: 'transit', detail: '08:52 AM Glacier Express departure · Car 22, Seats 23-24' },
+  { day: 2, name: 'Visp', lat: 46.2944, lng: 7.8828, type: 'pass-through', detail: 'Glacier Express route · Rhine Valley vineyards' },
+  { day: 2, name: 'Brig', lat: 46.3153, lng: 7.9876, type: 'pass-through', detail: 'Glacier Express route' },
+  { day: 2, name: 'Oberalp Pass', lat: 46.6595, lng: 8.6714, type: 'highlight', detail: '2,033m — Highest point of Glacier Express · Snowfields in May ⭐' },
+  { day: 2, name: 'Disentis', lat: 46.7034, lng: 8.8533, type: 'pass-through', detail: 'Rhine Gorge begins · Most dramatic GEX section' },
+  { day: 2, name: 'St. Moritz', lat: 46.4908, lng: 9.8355, type: 'overnight', detail: 'Arrive 4:37 PM · Evening walk along St. Moritz Lake · Engadine cuisine' },
+
+  // Day 3 — St. Moritz → Lucerne
+  { day: 3, name: 'St. Moritz Lake', lat: 46.4908, lng: 9.8355, type: 'activity', detail: 'Morning walk along the famous lake · Beautiful morning light' },
+  { day: 3, name: 'Albula Line (UNESCO)', lat: 46.5813, lng: 9.6748, type: 'highlight', detail: 'UNESCO World Heritage · Dramatic viaducts & spiraling tunnels ⭐' },
+  { day: 3, name: 'Chur', lat: 46.8499, lng: 9.5329, type: 'transit', detail: 'Transfer point · Fast IC to Zürich' },
+  { day: 3, name: 'Zürich HB', lat: 47.3782, lng: 8.5402, type: 'transit', detail: 'Platform change for Lucerne · Grab a snack' },
+  { day: 3, name: 'Lucerne', lat: 47.0502, lng: 8.3093, type: 'overnight', detail: 'Arrive ~2 PM · Chapel Bridge · Lion Monument · Old Town' },
+  { day: 3, name: 'Chapel Bridge', lat: 47.0518, lng: 8.3074, type: 'highlight', detail: '14th-century painted wooden bridge · Most photographed spot ⭐' },
+  { day: 3, name: 'Lion Monument', lat: 47.0585, lng: 8.3106, type: 'activity', detail: "Carved into rockface · Mark Twain: 'most mournful stone in the world'" },
+
+  // Day 4 — Mt. Pilatus
+  { day: 4, name: 'Alpnachstad', lat: 46.9489, lng: 8.2741, type: 'transit', detail: 'Departure for world\'s steepest cogwheel railway · 48% gradient' },
+  { day: 4, name: 'Pilatus Kulm', lat: 46.9788, lng: 8.2525, type: 'highlight', detail: '2,132m summit · Hike + panoramic restaurant · Drone ⭐⭐⭐' },
+  { day: 4, name: 'Kriens', lat: 47.0350, lng: 8.2759, type: 'transit', detail: 'Dragon Ride gondola down · Bus back to Lucerne' },
+  { day: 4, name: 'Musegg Wall', lat: 47.0560, lng: 8.3050, type: 'activity', detail: 'FREE medieval rampart walk · Sunset rooftop views over Lucerne' },
+
+  // Day 5 — Lucerne → Lauterbrunnen → Jungfraujoch
+  { day: 5, name: 'Lucerne (depart)', lat: 47.0502, lng: 8.3093, type: 'transit', detail: 'Scenic Zentralbahn via Brünig Pass' },
+  { day: 5, name: 'Interlaken Ost', lat: 46.6908, lng: 7.8694, type: 'transit', detail: 'Transfer point · Coffee stop' },
+  { day: 5, name: 'Lauterbrunnen', lat: 46.5936, lng: 7.9084, type: 'overnight', detail: 'Valley of 72 waterfalls · Alpine village base' },
+  { day: 5, name: 'Kleine Scheidegg', lat: 46.5849, lng: 7.9606, type: 'transit', detail: 'Cogwheel transfer · Stunning alpine scenery' },
+  { day: 5, name: 'Jungfraujoch', lat: 46.5472, lng: 7.9853, type: 'highlight', detail: '3,454m Top of Europe! · Sphinx deck · Aletsch Glacier · Ice Palace ⭐⭐⭐⭐' },
+
+  // Day 6 — Mürren & Schilthorn
+  { day: 6, name: 'Mürren', lat: 46.5590, lng: 7.8924, type: 'highlight', detail: 'Car-free clifftop village · Eiger, Mönch & Jungfrau panorama ⭐' },
+  { day: 6, name: 'Schilthorn / Piz Gloria', lat: 46.5567, lng: 7.8342, type: 'highlight', detail: '2,970m · James Bond OHMSS filming location · 360° revolving restaurant ⭐⭐' },
+  { day: 6, name: 'Staubbach Falls', lat: 46.5940, lng: 7.9060, type: 'activity', detail: 'Second visit · 297m waterfall in Lauterbrunnen' },
+
+  // Day 7 — Lauterbrunnen → Basel → Paris
+  { day: 7, name: 'Lauterbrunnen (depart)', lat: 46.5936, lng: 7.9084, type: 'transit', detail: '~9:15 AM depart · Train via Interlaken & Bern' },
+  { day: 7, name: 'Bern', lat: 46.9480, lng: 7.4474, type: 'pass-through', detail: 'Transit through Swiss capital' },
+  { day: 7, name: 'Basel SBB', lat: 47.5476, lng: 7.5897, type: 'transit', detail: 'TGV 9218 departs 12:34 PM to Paris' },
+  { day: 7, name: 'Paris Gare de Lyon', lat: 48.8449, lng: 2.3735, type: 'transit', detail: 'Arrive 3:38 PM · Metro to hotel' },
+  { day: 7, name: 'Montmartre & Sacré-Cœur', lat: 48.8867, lng: 2.3431, type: 'highlight', detail: 'Sunset views · Artist square · Boulangerie Raphaelle ⭐' },
+  { day: 7, name: 'Eiffel Tower', lat: 48.8584, lng: 2.2945, type: 'highlight', detail: '10:45 PM sparkle show · Champ de Mars lawn ⭐' },
+
+  // Day 8 — Full day Paris
+  { day: 8, name: 'Eiffel Tower (sunrise)', lat: 48.8584, lng: 2.2945, type: 'activity', detail: '6 AM sunrise · Daytime photos · Seine River walk' },
+  { day: 8, name: 'Louvre Museum', lat: 48.8606, lng: 2.3376, type: 'highlight', detail: '9 AM booking · 2 hours ⭐' },
+  { day: 8, name: 'Angelina Paris', lat: 48.8649, lng: 2.3289, type: 'food', detail: 'Famous hot chocolate · 9 min walk from Louvre' },
+  { day: 8, name: 'Le Marais', lat: 48.8566, lng: 2.3622, type: 'activity', detail: 'Lunch & exploring · Chez Alain Miam sandwich shop' },
+  { day: 8, name: 'Notre-Dame', lat: 48.8530, lng: 2.3499, type: 'highlight', detail: '23 min walk from Le Marais ⭐' },
+  { day: 8, name: 'Saint-Germain-des-Prés', lat: 48.8540, lng: 2.3338, type: 'activity', detail: 'Evening explore · Dinner at Le Bistrot des Fables 9 PM' },
+
+  // Day 9 — Paris → Zürich
+  { day: 9, name: 'Paris Gare de Lyon (depart)', lat: 48.8449, lng: 2.3735, type: 'transit', detail: '~9 AM TGV to Zürich · ~4 hrs' },
+  { day: 9, name: 'Zürich HB', lat: 47.3782, lng: 8.5402, type: 'transit', detail: 'Arrive 4:26 PM · S-Bahn to airport' },
+  { day: 9, name: 'Zürich Airport Hotel', lat: 47.4582, lng: 8.5555, type: 'overnight', detail: 'Rest & repack · Co Chin Chin dinner · Optional lakefront walk' },
+  { day: 9, name: 'Sechseläutenplatz', lat: 47.3660, lng: 8.5456, type: 'activity', detail: 'Zürich lakefront · Opera house views · Optional evening walk' },
+
+  // Day 10 — Fly home
+  { day: 10, name: 'Zürich Airport (ZRH)', lat: 47.4582, lng: 8.5555, type: 'transit', detail: '07:40 AM flight ZRH → Atlanta · Sprüngli last chocolate!' },
+];
+
+// ─── Route lines per day ───
+const routes = {
+  1: [[47.4582,8.5555],[47.3782,8.5402],[46.2944,7.8828],[46.0207,7.7491],[45.9833,7.7858]],
+  2: [[46.0207,7.7491],[46.2944,7.8828],[46.3153,7.9876],[46.6595,8.6714],[46.7034,8.8533],[46.4908,9.8355]],
+  3: [[46.4908,9.8355],[46.5813,9.6748],[46.8499,9.5329],[47.3782,8.5402],[47.0502,8.3093]],
+  4: [[47.0502,8.3093],[46.9489,8.2741],[46.9788,8.2525],[47.0350,8.2759],[47.0502,8.3093]],
+  5: [[47.0502,8.3093],[46.6908,7.8694],[46.5936,7.9084],[46.5849,7.9606],[46.5472,7.9853]],
+  6: [[46.5936,7.9084],[46.5590,7.8924],[46.5567,7.8342],[46.5590,7.8924],[46.5936,7.9084]],
+  7: [[46.5936,7.9084],[46.6908,7.8694],[46.9480,7.4474],[47.5476,7.5897],[48.8449,2.3735],[48.8867,2.3431],[48.8584,2.2945]],
+  8: [[48.8584,2.2945],[48.8606,2.3376],[48.8649,2.3289],[48.8566,2.3622],[48.8530,2.3499],[48.8540,2.3338]],
+  9: [[48.8449,2.3735],[47.3782,8.5402],[47.4582,8.5555]],
+  10: [[47.4582,8.5555]]
+};
+
+// ─── Type icons ───
+const typeIcons = {
+  'overnight': '🏨', 'highlight': '⭐', 'transit': '🚆', 'activity': '📍',
+  'pass-through': '🔸', 'food': '🍽️'
+};
+
+// ─── Map init ───
+const map = L.map('map', { zoomControl: true }).setView([47.0, 8.2], 7);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; <a href="https://carto.com/">CARTO</a> · OpenStreetMap',
+  maxZoom: 18
+}).addTo(map);
+
+// ─── Layers ───
+let markerLayers = {};
+let routeLayers = {};
+
+// Build layers per day
+for (let d = 1; d <= 10; d++) {
+  markerLayers[d] = L.layerGroup();
+  routeLayers[d] = L.layerGroup();
+
+  // Route polyline
+  if (routes[d] && routes[d].length > 1) {
+    const style = d === 2 ? { dashArray: '12, 8', weight: 4 } : { weight: 3 };
+    L.polyline(routes[d], {
+      color: dayColors[d], opacity: 0.7, ...style
+    }).addTo(routeLayers[d]);
+  }
+
+  // Markers
+  const dayPlaces = places.filter(p => p.day === d);
+  dayPlaces.forEach(p => {
+    const size = p.type === 'highlight' ? 34 : p.type === 'overnight' ? 30 : 24;
+    const icon = L.divIcon({
+      className: '',
+      html: `<div class="custom-marker" style="background:${dayColors[d]};width:${size}px;height:${size}px;font-size:${size > 28 ? 16 : 12}px">${typeIcons[p.type] || '📍'}</div>`,
+      iconSize: [size, size],
+      iconAnchor: [size/2, size/2]
+    });
+
+    const typeColors = {
+      'overnight': '#22c55e', 'highlight': '#eab308', 'transit': '#64748b',
+      'activity': '#06b6d4', 'pass-through': '#94a3b8', 'food': '#f97316'
+    };
+
+    L.marker([p.lat, p.lng], { icon })
+      .bindPopup(`
+        <div class="popup-day">${dayLabels[d]}</div>
+        <div class="popup-title">${p.name}</div>
+        <div class="popup-detail">${p.detail}</div>
+        <span class="popup-type" style="background:${typeColors[p.type] || '#475569'}22;color:${typeColors[p.type] || '#94a3b8'}">${p.type.replace('-', ' ')}</span>
+      `, { maxWidth: 280 })
+      .addTo(markerLayers[d]);
+  });
+
+  // Add to map by default
+  routeLayers[d].addTo(map);
+  markerLayers[d].addTo(map);
+}
+
+// ─── Day filtering ───
+function clearActive() {
+  document.querySelectorAll('.day-btn').forEach(b => { b.classList.remove('active'); b.classList.remove('all'); });
+}
+function showAll() {
+  clearActive();
+  document.querySelector('.day-btn').classList.add('active', 'all');
+  for (let d = 1; d <= 10; d++) {
+    map.addLayer(markerLayers[d]);
+    map.addLayer(routeLayers[d]);
+  }
+  map.fitBounds(L.latLngBounds([[45.9, 2.2],[48.95, 10.0]]), { padding: [30, 30] });
+}
+function showDay(d) {
+  clearActive();
+  document.querySelectorAll('.day-btn')[d].classList.add('active');
+  for (let i = 1; i <= 10; i++) {
+    map.removeLayer(markerLayers[i]);
+    map.removeLayer(routeLayers[i]);
+  }
+  map.addLayer(markerLayers[d]);
+  map.addLayer(routeLayers[d]);
+  // Fit to day bounds
+  const dayPts = places.filter(p => p.day === d).map(p => [p.lat, p.lng]);
+  if (dayPts.length > 1) {
+    map.fitBounds(L.latLngBounds(dayPts), { padding: [60, 60], maxZoom: 12 });
+  } else if (dayPts.length === 1) {
+    map.setView(dayPts[0], 12);
+  }
+}
+
+// ─── Legend ───
+const legendEl = document.getElementById('legend');
+for (let d = 1; d <= 10; d++) {
+  legendEl.innerHTML += `<div class="leg-item"><div class="leg-dot" style="background:${dayColors[d]}"></div>${dayLabels[d]}</div>`;
+}
+legendEl.innerHTML += `<div class="leg-item" style="margin-left:20px"><span style="font-size:16px">⭐</span> Highlight</div>`;
+legendEl.innerHTML += `<div class="leg-item"><span style="font-size:16px">🏨</span> Overnight</div>`;
+legendEl.innerHTML += `<div class="leg-item"><span style="font-size:16px">🚆</span> Transit</div>`;
+legendEl.innerHTML += `<div class="leg-item"><span style="font-size:16px">🍽️</span> Food</div>`;
+
+// Initial fit
+map.fitBounds(L.latLngBounds([[45.9, 2.2],[48.95, 10.0]]), { padding: [30, 30] });
+</script>
+</body>
+</html>
