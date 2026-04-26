@@ -1,0 +1,2484 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_4a4fc21ac233c93bd67c212b5ac73850 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:9999;
+     background:rgba(255,255,255,0.95);padding:10px 20px;border-radius:12px;
+     box-shadow:0 4px 20px rgba(0,0,0,0.15);text-align:center;
+     backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+     font-family:system-ui;max-width:90vw">
+    <div style="font-size:16px;font-weight:800;color:#1e293b">🇨🇭 Switzerland & Paris Travel Map</div>
+    <div style="font-size:11px;color:#64748b;margin-top:2px">George & Christina · May 3–12, 2026 · Tap markers for details</div>
+</div>
+    
+<div style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:9999;
+     background:rgba(255,255,255,0.95);padding:8px 14px;border-radius:20px;
+     box-shadow:0 4px 20px rgba(0,0,0,0.15);
+     backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+     font-family:system-ui;display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center;
+     max-width:95vw;font-size:11px;font-weight:700">
+    <span style="background:#f43f5e;color:#fff;padding:3px 8px;border-radius:12px">✈ Zürich</span>
+    <span style="color:#94a3b8">→</span>
+    <span style="background:#f43f5e;color:#fff;padding:3px 8px;border-radius:12px">Zermatt</span>
+    <span style="color:#f97316">🚂→</span>
+    <span style="background:#f97316;color:#fff;padding:3px 8px;border-radius:12px">St. Moritz</span>
+    <span style="color:#94a3b8">→</span>
+    <span style="background:#22c55e;color:#fff;padding:3px 8px;border-radius:12px">Lucerne</span>
+    <span style="color:#94a3b8">→</span>
+    <span style="background:#06b6d4;color:#fff;padding:3px 8px;border-radius:12px">Lauterbrunnen</span>
+    <span style="color:#94a3b8">→</span>
+    <span style="background:#ec4899;color:#fff;padding:3px 8px;border-radius:12px">Paris</span>
+    <span style="color:#94a3b8">→</span>
+    <span style="background:#14b8a6;color:#fff;padding:3px 8px;border-radius:12px">Zürich ✈</span>
+</div>
+    
+            <div class="folium-map" id="map_4a4fc21ac233c93bd67c212b5ac73850" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_4a4fc21ac233c93bd67c212b5ac73850 = L.map(
+                "map_4a4fc21ac233c93bd67c212b5ac73850",
+                {
+                    center: [47.0, 7.8],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 8,
+  "zoomControl": true,
+  "preferCanvas": true,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_4a4fc21ac233c93bd67c212b5ac73850);
+
+            
+
+        
+    
+            var tile_layer_3add63d17be284799d3e4ea422ecd218 = L.tileLayer(
+                "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 17,
+  "maxNativeZoom": 17,
+  "noWrap": false,
+  "attribution": "Map data: \u0026copy; OpenStreetMap \u00b7 SRTM | Map style: \u0026copy; OpenTopoMap",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_3add63d17be284799d3e4ea422ecd218.addTo(map_4a4fc21ac233c93bd67c212b5ac73850);
+        
+    
+            var tile_layer_9243e23541894be634a5f027da40122a = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; CARTO \u00b7 OpenStreetMap",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_9243e23541894be634a5f027da40122a.addTo(map_4a4fc21ac233c93bd67c212b5ac73850);
+        
+    
+            var tile_layer_52f696228b21969541501cc696e583b0 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; CARTO \u00b7 OpenStreetMap",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_52f696228b21969541501cc696e583b0.addTo(map_4a4fc21ac233c93bd67c212b5ac73850);
+        
+    
+            var feature_group_6144125f220c9f8cc88034ac2245f096 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_c91b7657a681ec51c737cc862313e051 = L.polyline(
+                [[47.4502, 8.5616], [47.3782, 8.5402], [46.2944, 7.8828], [46.0207, 7.7491], [45.9833, 7.7858]],
+                {"bubblingMouseEvents": true, "color": "#f43f5e", "dashArray": "1", "dashOffset": null, "fill": false, "fillColor": "#f43f5e", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(feature_group_6144125f220c9f8cc88034ac2245f096);
+        
+    
+            poly_line_c91b7657a681ec51c737cc862313e051.bindTooltip(
+                `<div>
+                     Day 1 · Zermatt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_eb11afbbe6ddbf482f95601993e07978 = L.circleMarker(
+                [47.4502, 8.5616],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f43f5e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6144125f220c9f8cc88034ac2245f096);
+        
+    
+        var popup_34f7fce4acb88f7b3e347172dc06caa2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_403d88c18f5bacbc35873ded4d9cb83e = $(`<div id="html_403d88c18f5bacbc35873ded4d9cb83e" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#f43f5e;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 1 · Zermatt</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🚆 Zürich Airport (ZRH)</div>         <div style="font-size:12px;color:#555;line-height:1.6">12:30 PM arrival from ATL<br>Activate Swiss Travel Pass at ZRH</div>     </div>     </div>`)[0];
+                popup_34f7fce4acb88f7b3e347172dc06caa2.setContent(html_403d88c18f5bacbc35873ded4d9cb83e);
+            
+        
+
+        circle_marker_eb11afbbe6ddbf482f95601993e07978.bindPopup(popup_34f7fce4acb88f7b3e347172dc06caa2)
+        ;
+
+        
+    
+    
+            circle_marker_eb11afbbe6ddbf482f95601993e07978.bindTooltip(
+                `<div>
+                     Zürich Airport (ZRH)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_171ac87774ef868cc2931b3f776013b4 = L.circleMarker(
+                [47.3782, 8.5402],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f43f5e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6144125f220c9f8cc88034ac2245f096);
+        
+    
+        var popup_85958f04bf920b0e9f6d953e344cf0a7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_aae15b493a36fe07e64adefdb2058d50 = $(`<div id="html_aae15b493a36fe07e64adefdb2058d50" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#f43f5e;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 1 · Zermatt</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🚆 Zürich HB</div>         <div style="font-size:12px;color:#555;line-height:1.6">Train connection to Zermatt via Visp</div>     </div>     </div>`)[0];
+                popup_85958f04bf920b0e9f6d953e344cf0a7.setContent(html_aae15b493a36fe07e64adefdb2058d50);
+            
+        
+
+        circle_marker_171ac87774ef868cc2931b3f776013b4.bindPopup(popup_85958f04bf920b0e9f6d953e344cf0a7)
+        ;
+
+        
+    
+    
+            circle_marker_171ac87774ef868cc2931b3f776013b4.bindTooltip(
+                `<div>
+                     Zürich HB
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ade9c43127d10eb65cbecb3b91212904 = L.circleMarker(
+                [46.0207, 7.7491],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f43f5e", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6144125f220c9f8cc88034ac2245f096);
+        
+    
+        var popup_ced8243f541fd3a5b3e10e7266deb76c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_db9103c57c2c2130f89c1f0793305f8b = $(`<div id="html_db9103c57c2c2130f89c1f0793305f8b" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#f43f5e;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 1 · Zermatt</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🏨 Zermatt</div>         <div style="font-size:12px;color:#555;line-height:1.6">🏨 Overnight · Car-free alpine village<br>Base for Matterhorn exploration</div>     </div>     </div>`)[0];
+                popup_ced8243f541fd3a5b3e10e7266deb76c.setContent(html_db9103c57c2c2130f89c1f0793305f8b);
+            
+        
+
+        circle_marker_ade9c43127d10eb65cbecb3b91212904.bindPopup(popup_ced8243f541fd3a5b3e10e7266deb76c)
+        ;
+
+        
+    
+    
+            circle_marker_ade9c43127d10eb65cbecb3b91212904.bindTooltip(
+                `<div>
+                     Zermatt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_e93b90746bb16d1d6459bcabb2995145 = L.marker(
+                [46.0207, 7.7491],
+                {
+}
+            ).addTo(feature_group_6144125f220c9f8cc88034ac2245f096);
+        
+    
+            var div_icon_300bca2e8882daaa848b8bda6155865a = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11px;font-weight:800;color:#f43f5e;text-shadow:1px 1px 3px white,-1px -1px 3px white,1px -1px 3px white,-1px 1px 3px white;white-space:nowrap;transform:translate(-50%,8px)\"\u003eZermatt\u003c/div\u003e",
+  "iconSize": [150, 20],
+  "iconAnchor": [75, 0],
+  "className": "empty",
+});
+        
+    
+                marker_e93b90746bb16d1d6459bcabb2995145.setIcon(div_icon_300bca2e8882daaa848b8bda6155865a);
+            
+    
+            var circle_marker_e037c7849887b28ee54b83f050f4f36e = L.circleMarker(
+                [45.9833, 7.7858],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f43f5e", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6144125f220c9f8cc88034ac2245f096);
+        
+    
+        var popup_db281d677a5680423da5814714b7e45e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bdcfb7ea0987c39376d18a21fe6909e5 = $(`<div id="html_bdcfb7ea0987c39376d18a21fe6909e5" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#f43f5e;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 1 · Zermatt</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">⭐ Gornergrat</div>         <div style="font-size:12px;color:#555;line-height:1.6">⭐ 3,089m panorama via rack railway<br>35 min ride · Matterhorn views<br>50% off with Swiss Pass<br><i>Go if Matterhorn is clear from town</i></div>     </div>     </div>`)[0];
+                popup_db281d677a5680423da5814714b7e45e.setContent(html_bdcfb7ea0987c39376d18a21fe6909e5);
+            
+        
+
+        circle_marker_e037c7849887b28ee54b83f050f4f36e.bindPopup(popup_db281d677a5680423da5814714b7e45e)
+        ;
+
+        
+    
+    
+            circle_marker_e037c7849887b28ee54b83f050f4f36e.bindTooltip(
+                `<div>
+                     Gornergrat
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7bea24d5e62aae776d6c52b3e410d80d = L.circleMarker(
+                [46.0195, 7.747],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f43f5e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6144125f220c9f8cc88034ac2245f096);
+        
+    
+        var popup_00b53cf3aa6369265281fb7d81faaa30 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c476d293cb90a589dc18462ebd2e7046 = $(`<div id="html_c476d293cb90a589dc18462ebd2e7046" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#f43f5e;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 1 · Zermatt</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">📍 Kirchbrücke & Petit Village</div>         <div style="font-size:12px;color:#555;line-height:1.6">Quick Matterhorn viewpoint<br>6 min walk from Airbnb<br>Good backup if Gornergrat is cloudy</div>     </div>     </div>`)[0];
+                popup_00b53cf3aa6369265281fb7d81faaa30.setContent(html_c476d293cb90a589dc18462ebd2e7046);
+            
+        
+
+        circle_marker_7bea24d5e62aae776d6c52b3e410d80d.bindPopup(popup_00b53cf3aa6369265281fb7d81faaa30)
+        ;
+
+        
+    
+    
+            circle_marker_7bea24d5e62aae776d6c52b3e410d80d.bindTooltip(
+                `<div>
+                     Kirchbrücke & Petit Village
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_6144125f220c9f8cc88034ac2245f096.addTo(map_4a4fc21ac233c93bd67c212b5ac73850);
+        
+    
+            var feature_group_6958e2a988abfaaedc94129c6535a7cf = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_83d0477b2b758b36a3d653f10ac246e4 = L.polyline(
+                [[46.0207, 7.7491], [46.2944, 7.8828], [46.3153, 7.9876], [46.633, 8.594], [46.6595, 8.6714], [46.7034, 8.8533], [46.4908, 9.8355]],
+                {"bubblingMouseEvents": true, "color": "#f97316", "dashArray": "12 8", "dashOffset": null, "fill": false, "fillColor": "#f97316", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 5}
+            ).addTo(feature_group_6958e2a988abfaaedc94129c6535a7cf);
+        
+    
+            poly_line_83d0477b2b758b36a3d653f10ac246e4.bindTooltip(
+                `<div>
+                     Day 2 · Glacier Express
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4fabc5c36b76ee2b2fbaad84c842a832 = L.circleMarker(
+                [46.0207, 7.7491],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_6958e2a988abfaaedc94129c6535a7cf);
+        
+    
+        var popup_71aad0aaa3e35a594bcebbd6bc4fa454 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_611b544f047092ce1a306261d180b50b = $(`<div id="html_611b544f047092ce1a306261d180b50b" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#f97316;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 2 · Glacier Express</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🚆 Zermatt Station</div>         <div style="font-size:12px;color:#555;line-height:1.6">🚂 Glacier Express 08:52 AM<br>Car 22, Seats 23-24, 1st Class<br>Conf #2844315-1<br><b>Do not miss this train!</b></div>     </div>     </div>`)[0];
+                popup_71aad0aaa3e35a594bcebbd6bc4fa454.setContent(html_611b544f047092ce1a306261d180b50b);
+            
+        
+
+        circle_marker_4fabc5c36b76ee2b2fbaad84c842a832.bindPopup(popup_71aad0aaa3e35a594bcebbd6bc4fa454)
+        ;
+
+        
+    
+    
+            circle_marker_4fabc5c36b76ee2b2fbaad84c842a832.bindTooltip(
+                `<div>
+                     Zermatt Station
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8be62cf2f6b4a0fb9d7e71f1f1f7eea4 = L.circleMarker(
+                [46.2944, 7.8828],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 1}
+            ).addTo(feature_group_6958e2a988abfaaedc94129c6535a7cf);
+        
+    
+        var popup_b4eeeec628c590896da33f0b2fd4d345 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bf571f14752377d8fb8c5f404acf25b4 = $(`<div id="html_bf571f14752377d8fb8c5f404acf25b4" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#f97316;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 2 · Glacier Express</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🔸 Visp</div>         <div style="font-size:12px;color:#555;line-height:1.6">Rhine Valley vineyards · GEX route</div>     </div>     </div>`)[0];
+                popup_b4eeeec628c590896da33f0b2fd4d345.setContent(html_bf571f14752377d8fb8c5f404acf25b4);
+            
+        
+
+        circle_marker_8be62cf2f6b4a0fb9d7e71f1f1f7eea4.bindPopup(popup_b4eeeec628c590896da33f0b2fd4d345)
+        ;
+
+        
+    
+    
+            circle_marker_8be62cf2f6b4a0fb9d7e71f1f1f7eea4.bindTooltip(
+                `<div>
+                     Visp
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5510f3200cbae5a55b6fc0212b1c7672 = L.circleMarker(
+                [46.3153, 7.9876],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 1}
+            ).addTo(feature_group_6958e2a988abfaaedc94129c6535a7cf);
+        
+    
+        var popup_131896c13fec91d6785ea1b1d601af89 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d3e5f6d2caadf1a173de5690f15dc56c = $(`<div id="html_d3e5f6d2caadf1a173de5690f15dc56c" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#f97316;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 2 · Glacier Express</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🔸 Brig</div>         <div style="font-size:12px;color:#555;line-height:1.6">Glacier Express route point</div>     </div>     </div>`)[0];
+                popup_131896c13fec91d6785ea1b1d601af89.setContent(html_d3e5f6d2caadf1a173de5690f15dc56c);
+            
+        
+
+        circle_marker_5510f3200cbae5a55b6fc0212b1c7672.bindPopup(popup_131896c13fec91d6785ea1b1d601af89)
+        ;
+
+        
+    
+    
+            circle_marker_5510f3200cbae5a55b6fc0212b1c7672.bindTooltip(
+                `<div>
+                     Brig
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b5366a3e876e614458d8d8f9ac192408 = L.circleMarker(
+                [46.633, 8.594],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 1}
+            ).addTo(feature_group_6958e2a988abfaaedc94129c6535a7cf);
+        
+    
+        var popup_f416bd9801106a2c891e8acd6b199637 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_09f8ceb3c237204833d999593af6d30c = $(`<div id="html_09f8ceb3c237204833d999593af6d30c" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#f97316;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 2 · Glacier Express</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🔸 Andermatt</div>         <div style="font-size:12px;color:#555;line-height:1.6">Alpine crossroads · Furka Pass area</div>     </div>     </div>`)[0];
+                popup_f416bd9801106a2c891e8acd6b199637.setContent(html_09f8ceb3c237204833d999593af6d30c);
+            
+        
+
+        circle_marker_b5366a3e876e614458d8d8f9ac192408.bindPopup(popup_f416bd9801106a2c891e8acd6b199637)
+        ;
+
+        
+    
+    
+            circle_marker_b5366a3e876e614458d8d8f9ac192408.bindTooltip(
+                `<div>
+                     Andermatt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8db67b287a03499b8975427859da0486 = L.circleMarker(
+                [46.6595, 8.6714],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6958e2a988abfaaedc94129c6535a7cf);
+        
+    
+        var popup_2e9a19eea837b5dd4282a926fc9e49ff = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cef365f22a1ca52048126d8a224c049e = $(`<div id="html_cef365f22a1ca52048126d8a224c049e" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#f97316;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 2 · Glacier Express</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">⭐ Oberalp Pass</div>         <div style="font-size:12px;color:#555;line-height:1.6">⭐ 2,033m — Highest point of Glacier Express<br>Snowfields in May · Best window photos</div>     </div>     </div>`)[0];
+                popup_2e9a19eea837b5dd4282a926fc9e49ff.setContent(html_cef365f22a1ca52048126d8a224c049e);
+            
+        
+
+        circle_marker_8db67b287a03499b8975427859da0486.bindPopup(popup_2e9a19eea837b5dd4282a926fc9e49ff)
+        ;
+
+        
+    
+    
+            circle_marker_8db67b287a03499b8975427859da0486.bindTooltip(
+                `<div>
+                     Oberalp Pass
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_05cd5704b707a678af8020f61b390373 = L.circleMarker(
+                [46.7034, 8.8533],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 1}
+            ).addTo(feature_group_6958e2a988abfaaedc94129c6535a7cf);
+        
+    
+        var popup_ce017790c8a06571d6755d9db1869db6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f955c2d2b4a8157bc6892a46890bd942 = $(`<div id="html_f955c2d2b4a8157bc6892a46890bd942" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#f97316;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 2 · Glacier Express</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🔸 Disentis</div>         <div style="font-size:12px;color:#555;line-height:1.6">Rhine Gorge begins here<br>Swiss Grand Canyon · Most dramatic GEX section</div>     </div>     </div>`)[0];
+                popup_ce017790c8a06571d6755d9db1869db6.setContent(html_f955c2d2b4a8157bc6892a46890bd942);
+            
+        
+
+        circle_marker_05cd5704b707a678af8020f61b390373.bindPopup(popup_ce017790c8a06571d6755d9db1869db6)
+        ;
+
+        
+    
+    
+            circle_marker_05cd5704b707a678af8020f61b390373.bindTooltip(
+                `<div>
+                     Disentis
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_69de2ae73159cc4b55305ba8480334aa = L.circleMarker(
+                [46.4908, 9.8355],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#f97316", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(feature_group_6958e2a988abfaaedc94129c6535a7cf);
+        
+    
+        var popup_9c814a99da26e503d824d69e29fb879c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2b485dbc27f2d5ed243760d167603529 = $(`<div id="html_2b485dbc27f2d5ed243760d167603529" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#f97316;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 2 · Glacier Express</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🏨 St. Moritz</div>         <div style="font-size:12px;color:#555;line-height:1.6">🏨 Overnight · Arrive 4:37 PM<br>Evening walk along St. Moritz Lake<br>🍽 La Scarpetta (Michelin Bib) or Alessio's</div>     </div>     </div>`)[0];
+                popup_9c814a99da26e503d824d69e29fb879c.setContent(html_2b485dbc27f2d5ed243760d167603529);
+            
+        
+
+        circle_marker_69de2ae73159cc4b55305ba8480334aa.bindPopup(popup_9c814a99da26e503d824d69e29fb879c)
+        ;
+
+        
+    
+    
+            circle_marker_69de2ae73159cc4b55305ba8480334aa.bindTooltip(
+                `<div>
+                     St. Moritz
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_29309ad17fcb04bc2f1297f50d9b5aaa = L.marker(
+                [46.4908, 9.8355],
+                {
+}
+            ).addTo(feature_group_6958e2a988abfaaedc94129c6535a7cf);
+        
+    
+            var div_icon_9578fc94b4474c51931b9bef344ce8eb = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11px;font-weight:800;color:#f97316;text-shadow:1px 1px 3px white,-1px -1px 3px white,1px -1px 3px white,-1px 1px 3px white;white-space:nowrap;transform:translate(-50%,8px)\"\u003eSt. Moritz\u003c/div\u003e",
+  "iconSize": [150, 20],
+  "iconAnchor": [75, 0],
+  "className": "empty",
+});
+        
+    
+                marker_29309ad17fcb04bc2f1297f50d9b5aaa.setIcon(div_icon_9578fc94b4474c51931b9bef344ce8eb);
+            
+    
+            feature_group_6958e2a988abfaaedc94129c6535a7cf.addTo(map_4a4fc21ac233c93bd67c212b5ac73850);
+        
+    
+            var feature_group_984933a803cc88aa216dcd8ad5bede96 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_188edc48504b2ea4ab986e6e78813935 = L.polyline(
+                [[46.4908, 9.8355], [46.5813, 9.6748], [46.8499, 9.5329], [47.3782, 8.5402], [47.0502, 8.3093]],
+                {"bubblingMouseEvents": true, "color": "#eab308", "dashArray": "1", "dashOffset": null, "fill": false, "fillColor": "#eab308", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(feature_group_984933a803cc88aa216dcd8ad5bede96);
+        
+    
+            poly_line_188edc48504b2ea4ab986e6e78813935.bindTooltip(
+                `<div>
+                     Day 3 · → Lucerne
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ee581c4561fe95f29e0d47a0c7d8e4a8 = L.circleMarker(
+                [46.494, 9.84],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eab308", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_984933a803cc88aa216dcd8ad5bede96);
+        
+    
+        var popup_f8a2290c301ea02708ebf895cd3396f8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_60f76bf6b34ec33ed689d0c7811aaa9a = $(`<div id="html_60f76bf6b34ec33ed689d0c7811aaa9a" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#eab308;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 3 · → Lucerne</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">📍 St. Moritz Lake</div>         <div style="font-size:12px;color:#555;line-height:1.6">Morning walk along the famous lake<br>Beautiful morning light · 45 min</div>     </div>     </div>`)[0];
+                popup_f8a2290c301ea02708ebf895cd3396f8.setContent(html_60f76bf6b34ec33ed689d0c7811aaa9a);
+            
+        
+
+        circle_marker_ee581c4561fe95f29e0d47a0c7d8e4a8.bindPopup(popup_f8a2290c301ea02708ebf895cd3396f8)
+        ;
+
+        
+    
+    
+            circle_marker_ee581c4561fe95f29e0d47a0c7d8e4a8.bindTooltip(
+                `<div>
+                     St. Moritz Lake
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_36b9d9004b4378355e0a8d1fe8461c79 = L.circleMarker(
+                [46.5813, 9.6748],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eab308", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(feature_group_984933a803cc88aa216dcd8ad5bede96);
+        
+    
+        var popup_a6698184bff169707ce45e11d10f08a6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9bf5d0587f01efdf71aff24491232b89 = $(`<div id="html_9bf5d0587f01efdf71aff24491232b89" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#eab308;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 3 · → Lucerne</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">⭐ Albula Line (UNESCO)</div>         <div style="font-size:12px;color:#555;line-height:1.6">⭐ UNESCO World Heritage Railway<br>Dramatic viaducts & spiraling tunnels<br>Landwasser Viaduct iconic!</div>     </div>     </div>`)[0];
+                popup_a6698184bff169707ce45e11d10f08a6.setContent(html_9bf5d0587f01efdf71aff24491232b89);
+            
+        
+
+        circle_marker_36b9d9004b4378355e0a8d1fe8461c79.bindPopup(popup_a6698184bff169707ce45e11d10f08a6)
+        ;
+
+        
+    
+    
+            circle_marker_36b9d9004b4378355e0a8d1fe8461c79.bindTooltip(
+                `<div>
+                     Albula Line (UNESCO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ade469e9dce1285b0cef30a1590999dc = L.circleMarker(
+                [46.8499, 9.5329],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eab308", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_984933a803cc88aa216dcd8ad5bede96);
+        
+    
+        var popup_786dff8d154f6240ab8ec9dbe5917cc6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_df12c3116cfd0fc32dbcb569ef90ef62 = $(`<div id="html_df12c3116cfd0fc32dbcb569ef90ef62" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#eab308;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 3 · → Lucerne</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🚆 Chur</div>         <div style="font-size:12px;color:#555;line-height:1.6">Transfer to IC train · Oldest city in Switzerland</div>     </div>     </div>`)[0];
+                popup_786dff8d154f6240ab8ec9dbe5917cc6.setContent(html_df12c3116cfd0fc32dbcb569ef90ef62);
+            
+        
+
+        circle_marker_ade469e9dce1285b0cef30a1590999dc.bindPopup(popup_786dff8d154f6240ab8ec9dbe5917cc6)
+        ;
+
+        
+    
+    
+            circle_marker_ade469e9dce1285b0cef30a1590999dc.bindTooltip(
+                `<div>
+                     Chur
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cb2fb20d5972af58bd93f81e2d3bf55e = L.circleMarker(
+                [47.3782, 8.5402],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eab308", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_984933a803cc88aa216dcd8ad5bede96);
+        
+    
+        var popup_e5c86c1ba466f0e0e68ad186fbcef37e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_94b8f7fec2342d2ce9f89ba078334c63 = $(`<div id="html_94b8f7fec2342d2ce9f89ba078334c63" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#eab308;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 3 · → Lucerne</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🚆 Zürich HB</div>         <div style="font-size:12px;color:#555;line-height:1.6">Platform change for Lucerne<br>Quick snack stop</div>     </div>     </div>`)[0];
+                popup_e5c86c1ba466f0e0e68ad186fbcef37e.setContent(html_94b8f7fec2342d2ce9f89ba078334c63);
+            
+        
+
+        circle_marker_cb2fb20d5972af58bd93f81e2d3bf55e.bindPopup(popup_e5c86c1ba466f0e0e68ad186fbcef37e)
+        ;
+
+        
+    
+    
+            circle_marker_cb2fb20d5972af58bd93f81e2d3bf55e.bindTooltip(
+                `<div>
+                     Zürich HB
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0c79c1cdd619d899884f20461f8ef9cd = L.circleMarker(
+                [47.0502, 8.3093],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eab308", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(feature_group_984933a803cc88aa216dcd8ad5bede96);
+        
+    
+        var popup_e48cba2df94f7bbafd003c4be821855e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6c5b5ac4c06f8e89e73e8761c56d6085 = $(`<div id="html_6c5b5ac4c06f8e89e73e8761c56d6085" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#eab308;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 3 · → Lucerne</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🏨 Lucerne</div>         <div style="font-size:12px;color:#555;line-height:1.6">🏨 Overnight · Arrive ~2 PM<br>Stunning lakefront old town</div>     </div>     </div>`)[0];
+                popup_e48cba2df94f7bbafd003c4be821855e.setContent(html_6c5b5ac4c06f8e89e73e8761c56d6085);
+            
+        
+
+        circle_marker_0c79c1cdd619d899884f20461f8ef9cd.bindPopup(popup_e48cba2df94f7bbafd003c4be821855e)
+        ;
+
+        
+    
+    
+            circle_marker_0c79c1cdd619d899884f20461f8ef9cd.bindTooltip(
+                `<div>
+                     Lucerne
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_f95944724ae74f8d6aacf6780a782e89 = L.marker(
+                [47.0502, 8.3093],
+                {
+}
+            ).addTo(feature_group_984933a803cc88aa216dcd8ad5bede96);
+        
+    
+            var div_icon_cf3d048a535c36dcf2a076c6457972e9 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11px;font-weight:800;color:#eab308;text-shadow:1px 1px 3px white,-1px -1px 3px white,1px -1px 3px white,-1px 1px 3px white;white-space:nowrap;transform:translate(-50%,8px)\"\u003eLucerne\u003c/div\u003e",
+  "iconSize": [150, 20],
+  "iconAnchor": [75, 0],
+  "className": "empty",
+});
+        
+    
+                marker_f95944724ae74f8d6aacf6780a782e89.setIcon(div_icon_cf3d048a535c36dcf2a076c6457972e9);
+            
+    
+            var circle_marker_13766df053e3298b10a4918768bf651e = L.circleMarker(
+                [47.0518, 8.3074],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eab308", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(feature_group_984933a803cc88aa216dcd8ad5bede96);
+        
+    
+        var popup_5016fffd8e670a607d55fda733e0fbdb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7c089061003ff9b0514a0e2f40d2d6d2 = $(`<div id="html_7c089061003ff9b0514a0e2f40d2d6d2" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#eab308;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 3 · → Lucerne</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">⭐ Chapel Bridge (Kapellbrücke)</div>         <div style="font-size:12px;color:#555;line-height:1.6">⭐ 14th-century painted wooden bridge<br>Most photographed spot in Lucerne<br>🍜 Banh Mi Pho nearby (takeaway)</div>     </div>     </div>`)[0];
+                popup_5016fffd8e670a607d55fda733e0fbdb.setContent(html_7c089061003ff9b0514a0e2f40d2d6d2);
+            
+        
+
+        circle_marker_13766df053e3298b10a4918768bf651e.bindPopup(popup_5016fffd8e670a607d55fda733e0fbdb)
+        ;
+
+        
+    
+    
+            circle_marker_13766df053e3298b10a4918768bf651e.bindTooltip(
+                `<div>
+                     Chapel Bridge (Kapellbrücke)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e168cf481b254b2a4f9ef1561d9f7976 = L.circleMarker(
+                [47.0585, 8.3106],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#eab308", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_984933a803cc88aa216dcd8ad5bede96);
+        
+    
+        var popup_b49fef3f4f0fafd8dc133082e5e15669 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_85b2367e865a5b1ea4ae6194df33ffac = $(`<div id="html_85b2367e865a5b1ea4ae6194df33ffac" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#eab308;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 3 · → Lucerne</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">📍 Lion Monument</div>         <div style="font-size:12px;color:#555;line-height:1.6">Carved into rockface<br>Mark Twain: "most mournful stone in the world"</div>     </div>     </div>`)[0];
+                popup_b49fef3f4f0fafd8dc133082e5e15669.setContent(html_85b2367e865a5b1ea4ae6194df33ffac);
+            
+        
+
+        circle_marker_e168cf481b254b2a4f9ef1561d9f7976.bindPopup(popup_b49fef3f4f0fafd8dc133082e5e15669)
+        ;
+
+        
+    
+    
+            circle_marker_e168cf481b254b2a4f9ef1561d9f7976.bindTooltip(
+                `<div>
+                     Lion Monument
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_984933a803cc88aa216dcd8ad5bede96.addTo(map_4a4fc21ac233c93bd67c212b5ac73850);
+        
+    
+            var feature_group_deb7305e4357272dd42576aafe26bc23 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_76b7ceaaea5ce472b22b36c1a27b808a = L.polyline(
+                [[47.0502, 8.3093], [46.9489, 8.2741], [46.9788, 8.2525], [46.99, 8.26], [47.035, 8.2759], [47.0502, 8.3093]],
+                {"bubblingMouseEvents": true, "color": "#22c55e", "dashArray": "1", "dashOffset": null, "fill": false, "fillColor": "#22c55e", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(feature_group_deb7305e4357272dd42576aafe26bc23);
+        
+    
+            poly_line_76b7ceaaea5ce472b22b36c1a27b808a.bindTooltip(
+                `<div>
+                     Day 4 · Mt. Pilatus
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ec7122eaeb05b50808db2bc3b64dd1b8 = L.circleMarker(
+                [46.9489, 8.2741],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_deb7305e4357272dd42576aafe26bc23);
+        
+    
+        var popup_f33b54c5b4016d34ed75394f8bff7042 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_77884c81c77d6560dadea42f80746117 = $(`<div id="html_77884c81c77d6560dadea42f80746117" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#22c55e;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 4 · Mt. Pilatus</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🚆 Alpnachstad</div>         <div style="font-size:12px;color:#555;line-height:1.6">World's steepest cogwheel railway<br>48% gradient! · 45 min to summit<br>⚠ Confirm May schedule — may be closed</div>     </div>     </div>`)[0];
+                popup_f33b54c5b4016d34ed75394f8bff7042.setContent(html_77884c81c77d6560dadea42f80746117);
+            
+        
+
+        circle_marker_ec7122eaeb05b50808db2bc3b64dd1b8.bindPopup(popup_f33b54c5b4016d34ed75394f8bff7042)
+        ;
+
+        
+    
+    
+            circle_marker_ec7122eaeb05b50808db2bc3b64dd1b8.bindTooltip(
+                `<div>
+                     Alpnachstad
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f55d37df4b977b0f76c3c4f4a3630bd7 = L.circleMarker(
+                [46.9788, 8.2525],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(feature_group_deb7305e4357272dd42576aafe26bc23);
+        
+    
+        var popup_42f1894160d8a80da32533450ad1a30c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_33eccf3ceacec82076ea2cd45183ad06 = $(`<div id="html_33eccf3ceacec82076ea2cd45183ad06" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#22c55e;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 4 · Mt. Pilatus</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">⭐ Pilatus Kulm</div>         <div style="font-size:12px;color:#555;line-height:1.6">⭐ 2,132m summit<br>Panoramic restaurant · Summit hike<br>🚁 Drone spot ⭐⭐⭐<br>Allow 3 hrs at top</div>     </div>     </div>`)[0];
+                popup_42f1894160d8a80da32533450ad1a30c.setContent(html_33eccf3ceacec82076ea2cd45183ad06);
+            
+        
+
+        circle_marker_f55d37df4b977b0f76c3c4f4a3630bd7.bindPopup(popup_42f1894160d8a80da32533450ad1a30c)
+        ;
+
+        
+    
+    
+            circle_marker_f55d37df4b977b0f76c3c4f4a3630bd7.bindTooltip(
+                `<div>
+                     Pilatus Kulm
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_07dc36a47b2389eba2805924fc1c5c36 = L.circleMarker(
+                [47.035, 8.2759],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_deb7305e4357272dd42576aafe26bc23);
+        
+    
+        var popup_aa62f6a8e85ac4430343486513b23a33 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e672aed6afae3abfbddfe05236a06ffd = $(`<div id="html_e672aed6afae3abfbddfe05236a06ffd" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#22c55e;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 4 · Mt. Pilatus</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">📍 Kriens (Dragon Ride)</div>         <div style="font-size:12px;color:#555;line-height:1.6">Dragon Ride gondola down<br>Different & more thrilling route<br>Bus back to Lucerne</div>     </div>     </div>`)[0];
+                popup_aa62f6a8e85ac4430343486513b23a33.setContent(html_e672aed6afae3abfbddfe05236a06ffd);
+            
+        
+
+        circle_marker_07dc36a47b2389eba2805924fc1c5c36.bindPopup(popup_aa62f6a8e85ac4430343486513b23a33)
+        ;
+
+        
+    
+    
+            circle_marker_07dc36a47b2389eba2805924fc1c5c36.bindTooltip(
+                `<div>
+                     Kriens (Dragon Ride)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_74d6574244b4773e95e1fe6e1de52f66 = L.circleMarker(
+                [46.99, 8.26],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_deb7305e4357272dd42576aafe26bc23);
+        
+    
+        var popup_81df051a9df5dd7ff2a252b7c5bd609d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_64114906b14d6c7a21f9da4fa38179d7 = $(`<div id="html_64114906b14d6c7a21f9da4fa38179d7" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#22c55e;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 4 · Mt. Pilatus</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">📍 Fräkmüntegg Toboggan</div>         <div style="font-size:12px;color:#555;line-height:1.6">🛷 Summer toboggan run!<br>rodelbahn.ch · From cable car stop<br><i>Christy suggestion</i></div>     </div>     </div>`)[0];
+                popup_81df051a9df5dd7ff2a252b7c5bd609d.setContent(html_64114906b14d6c7a21f9da4fa38179d7);
+            
+        
+
+        circle_marker_74d6574244b4773e95e1fe6e1de52f66.bindPopup(popup_81df051a9df5dd7ff2a252b7c5bd609d)
+        ;
+
+        
+    
+    
+            circle_marker_74d6574244b4773e95e1fe6e1de52f66.bindTooltip(
+                `<div>
+                     Fräkmüntegg Toboggan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_04d0cb321845af5aa907d583e0293d52 = L.circleMarker(
+                [47.056, 8.305],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#22c55e", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_deb7305e4357272dd42576aafe26bc23);
+        
+    
+        var popup_5d81a46b3d4ee672883579d2e5d12304 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4fc74d025fdf7f12c1dcc2130a0d1f4a = $(`<div id="html_4fc74d025fdf7f12c1dcc2130a0d1f4a" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#22c55e;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 4 · Mt. Pilatus</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">📍 Musegg Wall</div>         <div style="font-size:12px;color:#555;line-height:1.6">FREE medieval rampart walk<br>Last intact town wall in Switzerland<br>🌅 Best at sunset</div>     </div>     </div>`)[0];
+                popup_5d81a46b3d4ee672883579d2e5d12304.setContent(html_4fc74d025fdf7f12c1dcc2130a0d1f4a);
+            
+        
+
+        circle_marker_04d0cb321845af5aa907d583e0293d52.bindPopup(popup_5d81a46b3d4ee672883579d2e5d12304)
+        ;
+
+        
+    
+    
+            circle_marker_04d0cb321845af5aa907d583e0293d52.bindTooltip(
+                `<div>
+                     Musegg Wall
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_deb7305e4357272dd42576aafe26bc23.addTo(map_4a4fc21ac233c93bd67c212b5ac73850);
+        
+    
+            var feature_group_927301a69071e998df66c9b53a1cccc9 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_5ba26aaa6878d185730c9df1b287cb11 = L.polyline(
+                [[47.0502, 8.3093], [46.87, 8.14], [46.6908, 7.8694], [46.5936, 7.9084], [46.6083, 7.9221], [46.5849, 7.9606], [46.5472, 7.9853]],
+                {"bubblingMouseEvents": true, "color": "#06b6d4", "dashArray": "1", "dashOffset": null, "fill": false, "fillColor": "#06b6d4", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(feature_group_927301a69071e998df66c9b53a1cccc9);
+        
+    
+            poly_line_5ba26aaa6878d185730c9df1b287cb11.bindTooltip(
+                `<div>
+                     Day 5 · Jungfraujoch
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9e501955dd32765d6766168509b55bf1 = L.circleMarker(
+                [46.87, 8.14],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#06b6d4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_927301a69071e998df66c9b53a1cccc9);
+        
+    
+        var popup_1b9663953d1c771944f959499854d600 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_666c7d10f949e4a1cbb32cd21b042fba = $(`<div id="html_666c7d10f949e4a1cbb32cd21b042fba" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#06b6d4;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 5 · Jungfraujoch</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🚆 Brünig Pass Route</div>         <div style="font-size:12px;color:#555;line-height:1.6">Zentralbahn: Lucerne → Interlaken<br>Beautiful mountain route · 2 hrs</div>     </div>     </div>`)[0];
+                popup_1b9663953d1c771944f959499854d600.setContent(html_666c7d10f949e4a1cbb32cd21b042fba);
+            
+        
+
+        circle_marker_9e501955dd32765d6766168509b55bf1.bindPopup(popup_1b9663953d1c771944f959499854d600)
+        ;
+
+        
+    
+    
+            circle_marker_9e501955dd32765d6766168509b55bf1.bindTooltip(
+                `<div>
+                     Brünig Pass Route
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_576f7d1169d1b5bf481e6a7d5025228b = L.circleMarker(
+                [46.6908, 7.8694],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#06b6d4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_927301a69071e998df66c9b53a1cccc9);
+        
+    
+        var popup_00c307301964320565f7f5523943ec6c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_85e92cd55a39a725817734b1f6e30670 = $(`<div id="html_85e92cd55a39a725817734b1f6e30670" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#06b6d4;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 5 · Jungfraujoch</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🚆 Interlaken Ost</div>         <div style="font-size:12px;color:#555;line-height:1.6">Transfer point · Quick coffee</div>     </div>     </div>`)[0];
+                popup_00c307301964320565f7f5523943ec6c.setContent(html_85e92cd55a39a725817734b1f6e30670);
+            
+        
+
+        circle_marker_576f7d1169d1b5bf481e6a7d5025228b.bindPopup(popup_00c307301964320565f7f5523943ec6c)
+        ;
+
+        
+    
+    
+            circle_marker_576f7d1169d1b5bf481e6a7d5025228b.bindTooltip(
+                `<div>
+                     Interlaken Ost
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fb41bce831fdb3857720e3701f9e054e = L.circleMarker(
+                [46.5936, 7.9084],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#06b6d4", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(feature_group_927301a69071e998df66c9b53a1cccc9);
+        
+    
+        var popup_65c4a1d34462d70fd951be0f7f66defb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_45c6dcc7ecba34f410bee542e820b2ab = $(`<div id="html_45c6dcc7ecba34f410bee542e820b2ab" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#06b6d4;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 5 · Jungfraujoch</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🏨 Lauterbrunnen</div>         <div style="font-size:12px;color:#555;line-height:1.6">🏨 Overnight (2 nights)<br>Valley of 72 waterfalls<br>Drop bags at station lockers (CHF 5, coins!)</div>     </div>     </div>`)[0];
+                popup_65c4a1d34462d70fd951be0f7f66defb.setContent(html_45c6dcc7ecba34f410bee542e820b2ab);
+            
+        
+
+        circle_marker_fb41bce831fdb3857720e3701f9e054e.bindPopup(popup_65c4a1d34462d70fd951be0f7f66defb)
+        ;
+
+        
+    
+    
+            circle_marker_fb41bce831fdb3857720e3701f9e054e.bindTooltip(
+                `<div>
+                     Lauterbrunnen
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_561ebc41284f0fe57e18cebe5d8e8dc8 = L.marker(
+                [46.5936, 7.9084],
+                {
+}
+            ).addTo(feature_group_927301a69071e998df66c9b53a1cccc9);
+        
+    
+            var div_icon_8b10d287210209c16be1b75766a5bbcb = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11px;font-weight:800;color:#06b6d4;text-shadow:1px 1px 3px white,-1px -1px 3px white,1px -1px 3px white,-1px 1px 3px white;white-space:nowrap;transform:translate(-50%,8px)\"\u003eLauterbrunnen\u003c/div\u003e",
+  "iconSize": [150, 20],
+  "iconAnchor": [75, 0],
+  "className": "empty",
+});
+        
+    
+                marker_561ebc41284f0fe57e18cebe5d8e8dc8.setIcon(div_icon_8b10d287210209c16be1b75766a5bbcb);
+            
+    
+            var circle_marker_cfc58b44d0ea12ba14412177146f2f36 = L.circleMarker(
+                [46.6083, 7.9221],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#06b6d4", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 1}
+            ).addTo(feature_group_927301a69071e998df66c9b53a1cccc9);
+        
+    
+        var popup_214bc317920d01057496bc7887df0d35 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b9eaa9f3b007e329de728b14dde6b904 = $(`<div id="html_b9eaa9f3b007e329de728b14dde6b904" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#06b6d4;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 5 · Jungfraujoch</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🔸 Wengen</div>         <div style="font-size:12px;color:#555;line-height:1.6">Cogwheel stop en route to Kleine Scheidegg</div>     </div>     </div>`)[0];
+                popup_214bc317920d01057496bc7887df0d35.setContent(html_b9eaa9f3b007e329de728b14dde6b904);
+            
+        
+
+        circle_marker_cfc58b44d0ea12ba14412177146f2f36.bindPopup(popup_214bc317920d01057496bc7887df0d35)
+        ;
+
+        
+    
+    
+            circle_marker_cfc58b44d0ea12ba14412177146f2f36.bindTooltip(
+                `<div>
+                     Wengen
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e9b91a98383adac9bde01e3de1619c45 = L.circleMarker(
+                [46.5849, 7.9606],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#06b6d4", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_927301a69071e998df66c9b53a1cccc9);
+        
+    
+        var popup_976943731430c0ba0c55484a76f1e147 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6fdd29afb65985ce266b7b0eed0cb1b0 = $(`<div id="html_6fdd29afb65985ce266b7b0eed0cb1b0" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#06b6d4;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 5 · Jungfraujoch</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🚆 Kleine Scheidegg</div>         <div style="font-size:12px;color:#555;line-height:1.6">Transfer to Jungfraubahn<br>Stunning Eiger north face views</div>     </div>     </div>`)[0];
+                popup_976943731430c0ba0c55484a76f1e147.setContent(html_6fdd29afb65985ce266b7b0eed0cb1b0);
+            
+        
+
+        circle_marker_e9b91a98383adac9bde01e3de1619c45.bindPopup(popup_976943731430c0ba0c55484a76f1e147)
+        ;
+
+        
+    
+    
+            circle_marker_e9b91a98383adac9bde01e3de1619c45.bindTooltip(
+                `<div>
+                     Kleine Scheidegg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a00cc8f975b3e954ddcc4f5c08274566 = L.circleMarker(
+                [46.5472, 7.9853],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#06b6d4", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(feature_group_927301a69071e998df66c9b53a1cccc9);
+        
+    
+        var popup_2b16ab8b3034fc1f1db7df62aaf3adf3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6db0eef3aa74dd78a8b181f13682aea1 = $(`<div id="html_6db0eef3aa74dd78a8b181f13682aea1" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#06b6d4;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 5 · Jungfraujoch</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">⭐ Jungfraujoch — Top of Europe</div>         <div style="font-size:12px;color:#555;line-height:1.6">⭐⭐⭐⭐ 3,454m — Top of Europe!<br>Sphinx observation deck<br>Aletsch Glacier · Ice Palace<br>Snow plateau · Lindt chocolate shop<br>Allow 2 hrs at summit</div>     </div>     </div>`)[0];
+                popup_2b16ab8b3034fc1f1db7df62aaf3adf3.setContent(html_6db0eef3aa74dd78a8b181f13682aea1);
+            
+        
+
+        circle_marker_a00cc8f975b3e954ddcc4f5c08274566.bindPopup(popup_2b16ab8b3034fc1f1db7df62aaf3adf3)
+        ;
+
+        
+    
+    
+            circle_marker_a00cc8f975b3e954ddcc4f5c08274566.bindTooltip(
+                `<div>
+                     Jungfraujoch — Top of Europe
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_927301a69071e998df66c9b53a1cccc9.addTo(map_4a4fc21ac233c93bd67c212b5ac73850);
+        
+    
+            var feature_group_7b02f9b09d69c1eb5d182958c35da79a = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_32d6aa17fb4159039d3a979ab411cdb4 = L.polyline(
+                [[46.5936, 7.9084], [46.56, 7.902], [46.559, 7.8924], [46.5567, 7.8342], [46.559, 7.8924], [46.5936, 7.9084]],
+                {"bubblingMouseEvents": true, "color": "#8b5cf6", "dashArray": "1", "dashOffset": null, "fill": false, "fillColor": "#8b5cf6", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(feature_group_7b02f9b09d69c1eb5d182958c35da79a);
+        
+    
+            poly_line_32d6aa17fb4159039d3a979ab411cdb4.bindTooltip(
+                `<div>
+                     Day 6 · Mürren
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9b7eee4c4385618e7a6aaaf31692934d = L.circleMarker(
+                [46.56, 7.902],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8b5cf6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_7b02f9b09d69c1eb5d182958c35da79a);
+        
+    
+        var popup_bdef0f012a465add9e2b48df64b44d89 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e6577c78a46fc5a9ca3cdc478159f1b3 = $(`<div id="html_e6577c78a46fc5a9ca3cdc478159f1b3" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#8b5cf6;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 6 · Mürren</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🚆 Stechelberg</div>         <div style="font-size:12px;color:#555;line-height:1.6">Bus from Lauterbrunnen<br>Cable car to Mürren · Open in May</div>     </div>     </div>`)[0];
+                popup_bdef0f012a465add9e2b48df64b44d89.setContent(html_e6577c78a46fc5a9ca3cdc478159f1b3);
+            
+        
+
+        circle_marker_9b7eee4c4385618e7a6aaaf31692934d.bindPopup(popup_bdef0f012a465add9e2b48df64b44d89)
+        ;
+
+        
+    
+    
+            circle_marker_9b7eee4c4385618e7a6aaaf31692934d.bindTooltip(
+                `<div>
+                     Stechelberg
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c82f7ce67085adff3cf5f45bf4e02e32 = L.circleMarker(
+                [46.559, 7.8924],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8b5cf6", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7b02f9b09d69c1eb5d182958c35da79a);
+        
+    
+        var popup_86a6295aa8c637d50b999c2acace62ec = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ac4abbe3a0bdc261f13772ce9b803683 = $(`<div id="html_ac4abbe3a0bdc261f13772ce9b803683" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#8b5cf6;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 6 · Mürren</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">⭐ Mürren</div>         <div style="font-size:12px;color:#555;line-height:1.6">⭐ Car-free clifftop village<br>Eiger, Mönch & Jungfrau panorama<br>2 hrs exploring</div>     </div>     </div>`)[0];
+                popup_86a6295aa8c637d50b999c2acace62ec.setContent(html_ac4abbe3a0bdc261f13772ce9b803683);
+            
+        
+
+        circle_marker_c82f7ce67085adff3cf5f45bf4e02e32.bindPopup(popup_86a6295aa8c637d50b999c2acace62ec)
+        ;
+
+        
+    
+    
+            circle_marker_c82f7ce67085adff3cf5f45bf4e02e32.bindTooltip(
+                `<div>
+                     Mürren
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_205a973a33a9eb1a7300dda6e79a6256 = L.circleMarker(
+                [46.5567, 7.8342],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8b5cf6", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(feature_group_7b02f9b09d69c1eb5d182958c35da79a);
+        
+    
+        var popup_970a360574646f0cf281ea059b150fe9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0c1450548b7b8d4596d2b984928bf750 = $(`<div id="html_0c1450548b7b8d4596d2b984928bf750" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#8b5cf6;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 6 · Mürren</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">⭐ Schilthorn / Piz Gloria</div>         <div style="font-size:12px;color:#555;line-height:1.6">⭐⭐ 2,970m · James Bond OHMSS location<br>360° revolving restaurant<br>Views of 200+ peaks<br>~€90pp (50% Swiss Pass)</div>     </div>     </div>`)[0];
+                popup_970a360574646f0cf281ea059b150fe9.setContent(html_0c1450548b7b8d4596d2b984928bf750);
+            
+        
+
+        circle_marker_205a973a33a9eb1a7300dda6e79a6256.bindPopup(popup_970a360574646f0cf281ea059b150fe9)
+        ;
+
+        
+    
+    
+            circle_marker_205a973a33a9eb1a7300dda6e79a6256.bindTooltip(
+                `<div>
+                     Schilthorn / Piz Gloria
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5882b522c28b7c485e9309323af3fcac = L.circleMarker(
+                [46.594, 7.906],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#8b5cf6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_7b02f9b09d69c1eb5d182958c35da79a);
+        
+    
+        var popup_92006426e3109a45ffefdd92bbfdf6ec = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_16895c1d78afcf29a26343e2c014dcdb = $(`<div id="html_16895c1d78afcf29a26343e2c014dcdb" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#8b5cf6;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 6 · Mürren</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">📍 Staubbach Falls</div>         <div style="font-size:12px;color:#555;line-height:1.6">297m free-falling waterfall<br>Walk behind the falls<br>Second visit / afternoon</div>     </div>     </div>`)[0];
+                popup_92006426e3109a45ffefdd92bbfdf6ec.setContent(html_16895c1d78afcf29a26343e2c014dcdb);
+            
+        
+
+        circle_marker_5882b522c28b7c485e9309323af3fcac.bindPopup(popup_92006426e3109a45ffefdd92bbfdf6ec)
+        ;
+
+        
+    
+    
+            circle_marker_5882b522c28b7c485e9309323af3fcac.bindTooltip(
+                `<div>
+                     Staubbach Falls
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_7b02f9b09d69c1eb5d182958c35da79a.addTo(map_4a4fc21ac233c93bd67c212b5ac73850);
+        
+    
+            var feature_group_bed0b724f711e7a296d4cf6b7ba2ccd3 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_af26f0c5cb1dcc1791d1b38afccbf21a = L.polyline(
+                [[46.5936, 7.9084], [46.6908, 7.8694], [46.948, 7.4474], [47.5476, 7.5897], [48.8449, 2.3735], [48.8867, 2.3431], [48.8584, 2.2945]],
+                {"bubblingMouseEvents": true, "color": "#ec4899", "dashArray": "1", "dashOffset": null, "fill": false, "fillColor": "#ec4899", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(feature_group_bed0b724f711e7a296d4cf6b7ba2ccd3);
+        
+    
+            poly_line_af26f0c5cb1dcc1791d1b38afccbf21a.bindTooltip(
+                `<div>
+                     Day 7 · → Paris
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a1352765e527fff26e548c8bbaaf43c4 = L.circleMarker(
+                [46.5936, 7.9084],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ec4899", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_bed0b724f711e7a296d4cf6b7ba2ccd3);
+        
+    
+        var popup_12f36161b2e7679d2919ecb694022d4b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7e4b68add7b242101506a9e69976ab70 = $(`<div id="html_7e4b68add7b242101506a9e69976ab70" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#ec4899;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 7 · → Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🚆 Lauterbrunnen (depart)</div>         <div style="font-size:12px;color:#555;line-height:1.6">~9:15 AM departure<br>Train via Interlaken & Bern</div>     </div>     </div>`)[0];
+                popup_12f36161b2e7679d2919ecb694022d4b.setContent(html_7e4b68add7b242101506a9e69976ab70);
+            
+        
+
+        circle_marker_a1352765e527fff26e548c8bbaaf43c4.bindPopup(popup_12f36161b2e7679d2919ecb694022d4b)
+        ;
+
+        
+    
+    
+            circle_marker_a1352765e527fff26e548c8bbaaf43c4.bindTooltip(
+                `<div>
+                     Lauterbrunnen (depart)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_924fc0656cd74845cc5b620d2ce605b1 = L.circleMarker(
+                [46.948, 7.4474],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ec4899", "fillOpacity": 0.5, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 4, "stroke": true, "weight": 1}
+            ).addTo(feature_group_bed0b724f711e7a296d4cf6b7ba2ccd3);
+        
+    
+        var popup_ea42acf1b615d42c34a192ef8dacb140 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8db75a33e077fb42729dfa01d1cd1e77 = $(`<div id="html_8db75a33e077fb42729dfa01d1cd1e77" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#ec4899;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 7 · → Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🔸 Bern</div>         <div style="font-size:12px;color:#555;line-height:1.6">Transit through Swiss capital</div>     </div>     </div>`)[0];
+                popup_ea42acf1b615d42c34a192ef8dacb140.setContent(html_8db75a33e077fb42729dfa01d1cd1e77);
+            
+        
+
+        circle_marker_924fc0656cd74845cc5b620d2ce605b1.bindPopup(popup_ea42acf1b615d42c34a192ef8dacb140)
+        ;
+
+        
+    
+    
+            circle_marker_924fc0656cd74845cc5b620d2ce605b1.bindTooltip(
+                `<div>
+                     Bern
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4961d8675e7a31950cd4eda6be61b54d = L.circleMarker(
+                [47.5476, 7.5897],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ec4899", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_bed0b724f711e7a296d4cf6b7ba2ccd3);
+        
+    
+        var popup_114ae15705ef29592e1213a886335762 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c4d5104fce92be753cd640a38f921721 = $(`<div id="html_c4d5104fce92be753cd640a38f921721" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#ec4899;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 7 · → Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🚆 Basel SBB</div>         <div style="font-size:12px;color:#555;line-height:1.6">TGV 9218 departs 12:34 PM<br>Grab snack · 45 min buffer</div>     </div>     </div>`)[0];
+                popup_114ae15705ef29592e1213a886335762.setContent(html_c4d5104fce92be753cd640a38f921721);
+            
+        
+
+        circle_marker_4961d8675e7a31950cd4eda6be61b54d.bindPopup(popup_114ae15705ef29592e1213a886335762)
+        ;
+
+        
+    
+    
+            circle_marker_4961d8675e7a31950cd4eda6be61b54d.bindTooltip(
+                `<div>
+                     Basel SBB
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f8bee818cb5cdc62e1d2f5c755426cfb = L.circleMarker(
+                [48.8449, 2.3735],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ec4899", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_bed0b724f711e7a296d4cf6b7ba2ccd3);
+        
+    
+        var popup_b3c8477be592f139b77b6335e047f87f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2d7dacd89350e246d3eb436fcd1486d7 = $(`<div id="html_2d7dacd89350e246d3eb436fcd1486d7" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#ec4899;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 7 · → Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🚆 Paris Gare de Lyon</div>         <div style="font-size:12px;color:#555;line-height:1.6">Arrive 3:38 PM · Metro to hotel</div>     </div>     </div>`)[0];
+                popup_b3c8477be592f139b77b6335e047f87f.setContent(html_2d7dacd89350e246d3eb436fcd1486d7);
+            
+        
+
+        circle_marker_f8bee818cb5cdc62e1d2f5c755426cfb.bindPopup(popup_b3c8477be592f139b77b6335e047f87f)
+        ;
+
+        
+    
+    
+            circle_marker_f8bee818cb5cdc62e1d2f5c755426cfb.bindTooltip(
+                `<div>
+                     Paris Gare de Lyon
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_856a99aa0b7be9a412c98898b436cd2b = L.circleMarker(
+                [48.8867, 2.3431],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ec4899", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bed0b724f711e7a296d4cf6b7ba2ccd3);
+        
+    
+        var popup_1bcc7c9bc0415832c64435a17ad02378 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_293cc7dd6e1f252f63e8642ac57434b2 = $(`<div id="html_293cc7dd6e1f252f63e8642ac57434b2" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#ec4899;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 7 · → Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">⭐ Montmartre & Sacré-Cœur</div>         <div style="font-size:12px;color:#555;line-height:1.6">⭐ Sunset/golden hour at 8 PM<br>Walk or take funicular<br>Rue de l'Abreuvoir · Place du Tertre<br>🥐 Boulangerie Raphaelle</div>     </div>     </div>`)[0];
+                popup_1bcc7c9bc0415832c64435a17ad02378.setContent(html_293cc7dd6e1f252f63e8642ac57434b2);
+            
+        
+
+        circle_marker_856a99aa0b7be9a412c98898b436cd2b.bindPopup(popup_1bcc7c9bc0415832c64435a17ad02378)
+        ;
+
+        
+    
+    
+            circle_marker_856a99aa0b7be9a412c98898b436cd2b.bindTooltip(
+                `<div>
+                     Montmartre & Sacré-Cœur
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_db2c11e6ddd1ec163a89f474106822f1 = L.circleMarker(
+                [48.885, 2.339],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ec4899", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 2}
+            ).addTo(feature_group_bed0b724f711e7a296d4cf6b7ba2ccd3);
+        
+    
+        var popup_fc9c807d25df9f8e879349687d018899 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ea9f3db8928e2c93b4d0ffe7894339cd = $(`<div id="html_ea9f3db8928e2c93b4d0ffe7894339cd" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#ec4899;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 7 · → Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🍽️ Pierre Hermé Macarons</div>         <div style="font-size:12px;color:#555;line-height:1.6">🍽 3 min walk from Montmartre<br>Famous French macarons</div>     </div>     </div>`)[0];
+                popup_fc9c807d25df9f8e879349687d018899.setContent(html_ea9f3db8928e2c93b4d0ffe7894339cd);
+            
+        
+
+        circle_marker_db2c11e6ddd1ec163a89f474106822f1.bindPopup(popup_fc9c807d25df9f8e879349687d018899)
+        ;
+
+        
+    
+    
+            circle_marker_db2c11e6ddd1ec163a89f474106822f1.bindTooltip(
+                `<div>
+                     Pierre Hermé Macarons
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1e57f3a98714fb2c87d10658a7aa66b9 = L.circleMarker(
+                [48.8584, 2.2945],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ec4899", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(feature_group_bed0b724f711e7a296d4cf6b7ba2ccd3);
+        
+    
+        var popup_82870f2eaeccc8d6c93b17837c80923e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3f361d85001163da77c49e8afb306257 = $(`<div id="html_3f361d85001163da77c49e8afb306257" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#ec4899;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 7 · → Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">⭐ Eiffel Tower</div>         <div style="font-size:12px;color:#555;line-height:1.6">⭐ 10:45 PM for 11 PM sparkle!<br>Champ de Mars lawn<br>🍾 Champagne picnic</div>     </div>     </div>`)[0];
+                popup_82870f2eaeccc8d6c93b17837c80923e.setContent(html_3f361d85001163da77c49e8afb306257);
+            
+        
+
+        circle_marker_1e57f3a98714fb2c87d10658a7aa66b9.bindPopup(popup_82870f2eaeccc8d6c93b17837c80923e)
+        ;
+
+        
+    
+    
+            circle_marker_1e57f3a98714fb2c87d10658a7aa66b9.bindTooltip(
+                `<div>
+                     Eiffel Tower
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_bed0b724f711e7a296d4cf6b7ba2ccd3.addTo(map_4a4fc21ac233c93bd67c212b5ac73850);
+        
+    
+            var feature_group_ed2803391ac3db8de443b2de27259a98 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_d868ba51411a8a904ea518a001f9ada4 = L.polyline(
+                [[48.8584, 2.2945], [48.8606, 2.3376], [48.8649, 2.3289], [48.8566, 2.3622], [48.853, 2.3499], [48.854, 2.3338]],
+                {"bubblingMouseEvents": true, "color": "#6366f1", "dashArray": "1", "dashOffset": null, "fill": false, "fillColor": "#6366f1", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(feature_group_ed2803391ac3db8de443b2de27259a98);
+        
+    
+            poly_line_d868ba51411a8a904ea518a001f9ada4.bindTooltip(
+                `<div>
+                     Day 8 · Paris
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ca6d3e1cb7cd50cc03a7f27da2ffc18c = L.circleMarker(
+                [48.8584, 2.2945],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#6366f1", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_ed2803391ac3db8de443b2de27259a98);
+        
+    
+        var popup_ec7fceb12b0c15276c069b1b8aa67209 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d400fdf4ad6109604749736cd1f56cbf = $(`<div id="html_d400fdf4ad6109604749736cd1f56cbf" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#6366f1;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 8 · Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">📍 Eiffel Tower (sunrise)</div>         <div style="font-size:12px;color:#555;line-height:1.6">🌅 6 AM sunrise · Daytime photos<br>Seine River walk</div>     </div>     </div>`)[0];
+                popup_ec7fceb12b0c15276c069b1b8aa67209.setContent(html_d400fdf4ad6109604749736cd1f56cbf);
+            
+        
+
+        circle_marker_ca6d3e1cb7cd50cc03a7f27da2ffc18c.bindPopup(popup_ec7fceb12b0c15276c069b1b8aa67209)
+        ;
+
+        
+    
+    
+            circle_marker_ca6d3e1cb7cd50cc03a7f27da2ffc18c.bindTooltip(
+                `<div>
+                     Eiffel Tower (sunrise)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_be0353f868a07f3c8dfefbf79803fe7c = L.circleMarker(
+                [48.8606, 2.3376],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#6366f1", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(feature_group_ed2803391ac3db8de443b2de27259a98);
+        
+    
+        var popup_0eaea495c2ca3895be1033616b33560d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b4fea6dfeb6381db37f14c4eb66fa187 = $(`<div id="html_b4fea6dfeb6381db37f14c4eb66fa187" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#6366f1;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 8 · Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">⭐ Louvre Museum</div>         <div style="font-size:12px;color:#555;line-height:1.6">⭐ 9 AM booking · ~2 hours</div>     </div>     </div>`)[0];
+                popup_0eaea495c2ca3895be1033616b33560d.setContent(html_b4fea6dfeb6381db37f14c4eb66fa187);
+            
+        
+
+        circle_marker_be0353f868a07f3c8dfefbf79803fe7c.bindPopup(popup_0eaea495c2ca3895be1033616b33560d)
+        ;
+
+        
+    
+    
+            circle_marker_be0353f868a07f3c8dfefbf79803fe7c.bindTooltip(
+                `<div>
+                     Louvre Museum
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e655b333daf8935f740882b99843bfff = L.circleMarker(
+                [48.8616, 2.3333],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#6366f1", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_ed2803391ac3db8de443b2de27259a98);
+        
+    
+        var popup_5616e3525a8677071fcbfffcc2a5cba9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_913602cf452d9ba90c8426dc24aef5c8 = $(`<div id="html_913602cf452d9ba90c8426dc24aef5c8" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#6366f1;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 8 · Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">📍 Arc de Triomphe du Carrousel</div>         <div style="font-size:12px;color:#555;line-height:1.6">Quick photo stop · <30 min<br>Near Louvre exit</div>     </div>     </div>`)[0];
+                popup_5616e3525a8677071fcbfffcc2a5cba9.setContent(html_913602cf452d9ba90c8426dc24aef5c8);
+            
+        
+
+        circle_marker_e655b333daf8935f740882b99843bfff.bindPopup(popup_5616e3525a8677071fcbfffcc2a5cba9)
+        ;
+
+        
+    
+    
+            circle_marker_e655b333daf8935f740882b99843bfff.bindTooltip(
+                `<div>
+                     Arc de Triomphe du Carrousel
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f02059f532dbf6684e4b4c214f359190 = L.circleMarker(
+                [48.8649, 2.3289],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#6366f1", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 2}
+            ).addTo(feature_group_ed2803391ac3db8de443b2de27259a98);
+        
+    
+        var popup_9b532290528796f063f915d96bf64719 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4b8e4eb9bd830a73fd3e41527be065c6 = $(`<div id="html_4b8e4eb9bd830a73fd3e41527be065c6" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#6366f1;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 8 · Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🍽️ Angelina</div>         <div style="font-size:12px;color:#555;line-height:1.6">🍫 Famous Parisian hot chocolate<br>9 min walk from Louvre</div>     </div>     </div>`)[0];
+                popup_9b532290528796f063f915d96bf64719.setContent(html_4b8e4eb9bd830a73fd3e41527be065c6);
+            
+        
+
+        circle_marker_f02059f532dbf6684e4b4c214f359190.bindPopup(popup_9b532290528796f063f915d96bf64719)
+        ;
+
+        
+    
+    
+            circle_marker_f02059f532dbf6684e4b4c214f359190.bindTooltip(
+                `<div>
+                     Angelina
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1668824f77dac392213d14db0a59f385 = L.circleMarker(
+                [48.8645, 2.328],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#6366f1", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 2}
+            ).addTo(feature_group_ed2803391ac3db8de443b2de27259a98);
+        
+    
+        var popup_ff29418019c57487cce0c0b872ddf04f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a9800789af6b2e0f0c35f3fc5b8c5187 = $(`<div id="html_a9800789af6b2e0f0c35f3fc5b8c5187" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#6366f1;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 8 · Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🍽️ Ladurée Rivoli</div>         <div style="font-size:12px;color:#555;line-height:1.6">🍽 Legendary macarons<br>1 min walk from Angelina</div>     </div>     </div>`)[0];
+                popup_ff29418019c57487cce0c0b872ddf04f.setContent(html_a9800789af6b2e0f0c35f3fc5b8c5187);
+            
+        
+
+        circle_marker_1668824f77dac392213d14db0a59f385.bindPopup(popup_ff29418019c57487cce0c0b872ddf04f)
+        ;
+
+        
+    
+    
+            circle_marker_1668824f77dac392213d14db0a59f385.bindTooltip(
+                `<div>
+                     Ladurée Rivoli
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_725a1d735136ec91fb4c20f5967b03fe = L.circleMarker(
+                [48.8566, 2.3622],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#6366f1", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 2}
+            ).addTo(feature_group_ed2803391ac3db8de443b2de27259a98);
+        
+    
+        var popup_2da6f5124e32b7e8a64fc75c64c5204e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_717b5988e1de65bbcd8d1cc69ae7fb64 = $(`<div id="html_717b5988e1de65bbcd8d1cc69ae7fb64" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#6366f1;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 8 · Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🍽️ Le Marais</div>         <div style="font-size:12px;color:#555;line-height:1.6">🍽 Lunch & exploring<br>Chez Alain Miam sandwiches<br>or Caractère de Cochon</div>     </div>     </div>`)[0];
+                popup_2da6f5124e32b7e8a64fc75c64c5204e.setContent(html_717b5988e1de65bbcd8d1cc69ae7fb64);
+            
+        
+
+        circle_marker_725a1d735136ec91fb4c20f5967b03fe.bindPopup(popup_2da6f5124e32b7e8a64fc75c64c5204e)
+        ;
+
+        
+    
+    
+            circle_marker_725a1d735136ec91fb4c20f5967b03fe.bindTooltip(
+                `<div>
+                     Le Marais
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_524810c26bc75ff2f0f715ae1f532722 = L.circleMarker(
+                [48.858, 2.358],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#6366f1", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 2}
+            ).addTo(feature_group_ed2803391ac3db8de443b2de27259a98);
+        
+    
+        var popup_2d6fec6f8122e7d49183fd9c980a8157 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c92d3fc8a09e7092fb0b3d368aa65461 = $(`<div id="html_c92d3fc8a09e7092fb0b3d368aa65461" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#6366f1;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 8 · Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🍽️ Maison Phê (Vietnamese Coffee)</div>         <div style="font-size:12px;color:#555;line-height:1.6">☕ Vietnamese coffee · 12 min walk</div>     </div>     </div>`)[0];
+                popup_2d6fec6f8122e7d49183fd9c980a8157.setContent(html_c92d3fc8a09e7092fb0b3d368aa65461);
+            
+        
+
+        circle_marker_524810c26bc75ff2f0f715ae1f532722.bindPopup(popup_2d6fec6f8122e7d49183fd9c980a8157)
+        ;
+
+        
+    
+    
+            circle_marker_524810c26bc75ff2f0f715ae1f532722.bindTooltip(
+                `<div>
+                     Maison Phê (Vietnamese Coffee)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_76b882f188e15c530ba6b5789c249ed3 = L.circleMarker(
+                [48.8575, 2.3555],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#6366f1", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 2}
+            ).addTo(feature_group_ed2803391ac3db8de443b2de27259a98);
+        
+    
+        var popup_a07f62189d0b25a6f0ce440dba67731e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2744bb6a9b2437798623167d2e8e5cb0 = $(`<div id="html_2744bb6a9b2437798623167d2e8e5cb0" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#6366f1;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 8 · Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🍽️ Pozzetto Gelato</div>         <div style="font-size:12px;color:#555;line-height:1.6">🍦 Best gelato in Paris<br>5 min walk from Maison Phê</div>     </div>     </div>`)[0];
+                popup_a07f62189d0b25a6f0ce440dba67731e.setContent(html_2744bb6a9b2437798623167d2e8e5cb0);
+            
+        
+
+        circle_marker_76b882f188e15c530ba6b5789c249ed3.bindPopup(popup_a07f62189d0b25a6f0ce440dba67731e)
+        ;
+
+        
+    
+    
+            circle_marker_76b882f188e15c530ba6b5789c249ed3.bindTooltip(
+                `<div>
+                     Pozzetto Gelato
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_02aabb7af549e984b32360e7c24381df = L.circleMarker(
+                [48.853, 2.3499],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#6366f1", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(feature_group_ed2803391ac3db8de443b2de27259a98);
+        
+    
+        var popup_c8369d431500e5d09f707e8812ba081d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_21a37925e297be76fc658c01ee871945 = $(`<div id="html_21a37925e297be76fc658c01ee871945" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#6366f1;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 8 · Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">⭐ Notre-Dame</div>         <div style="font-size:12px;color:#555;line-height:1.6">⭐ 23 min walk from Le Marais<br>Rebuilt and reopened!</div>     </div>     </div>`)[0];
+                popup_c8369d431500e5d09f707e8812ba081d.setContent(html_21a37925e297be76fc658c01ee871945);
+            
+        
+
+        circle_marker_02aabb7af549e984b32360e7c24381df.bindPopup(popup_c8369d431500e5d09f707e8812ba081d)
+        ;
+
+        
+    
+    
+            circle_marker_02aabb7af549e984b32360e7c24381df.bindTooltip(
+                `<div>
+                     Notre-Dame
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_965a391b3e5a932af5b43d0f314703c1 = L.circleMarker(
+                [48.8554, 2.345],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#6366f1", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_ed2803391ac3db8de443b2de27259a98);
+        
+    
+        var popup_3be2c0ee7a9556e5327bb8c62228d127 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_504a62a598a72c02a03712935509de87 = $(`<div id="html_504a62a598a72c02a03712935509de87" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#6366f1;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 8 · Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">📍 Sainte-Chapelle</div>         <div style="font-size:12px;color:#555;line-height:1.6">Stunning stained glass chapel<br>⚠ Need reservation · OPTIONAL</div>     </div>     </div>`)[0];
+                popup_3be2c0ee7a9556e5327bb8c62228d127.setContent(html_504a62a598a72c02a03712935509de87);
+            
+        
+
+        circle_marker_965a391b3e5a932af5b43d0f314703c1.bindPopup(popup_3be2c0ee7a9556e5327bb8c62228d127)
+        ;
+
+        
+    
+    
+            circle_marker_965a391b3e5a932af5b43d0f314703c1.bindTooltip(
+                `<div>
+                     Sainte-Chapelle
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e6bf1a471996139edebd40ca82e3d88d = L.circleMarker(
+                [48.851, 2.335],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#6366f1", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 2}
+            ).addTo(feature_group_ed2803391ac3db8de443b2de27259a98);
+        
+    
+        var popup_85bc9dffa74909673c54ac7dc991e35c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_48ddd91c2eae21ca8ff0876c2172cdac = $(`<div id="html_48ddd91c2eae21ca8ff0876c2172cdac" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#6366f1;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 8 · Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🍽️ Chocolat Chapon</div>         <div style="font-size:12px;color:#555;line-height:1.6">🍫 Chocolate mousse<br>13 min walk from Latin Quarter</div>     </div>     </div>`)[0];
+                popup_85bc9dffa74909673c54ac7dc991e35c.setContent(html_48ddd91c2eae21ca8ff0876c2172cdac);
+            
+        
+
+        circle_marker_e6bf1a471996139edebd40ca82e3d88d.bindPopup(popup_85bc9dffa74909673c54ac7dc991e35c)
+        ;
+
+        
+    
+    
+            circle_marker_e6bf1a471996139edebd40ca82e3d88d.bindTooltip(
+                `<div>
+                     Chocolat Chapon
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b2aa9d058403698cc430c48ac84d3b03 = L.circleMarker(
+                [48.854, 2.3338],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#6366f1", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_ed2803391ac3db8de443b2de27259a98);
+        
+    
+        var popup_cd1810374fdab48966c56107f2bab555 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_35da4e598f489324e7b6b6eb77e06eaf = $(`<div id="html_35da4e598f489324e7b6b6eb77e06eaf" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#6366f1;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 8 · Paris</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">📍 Saint-Germain-des-Prés</div>         <div style="font-size:12px;color:#555;line-height:1.6">Evening explore<br>🍽 Le Bistrot des Fables 9 PM (Michelin Bib)</div>     </div>     </div>`)[0];
+                popup_cd1810374fdab48966c56107f2bab555.setContent(html_35da4e598f489324e7b6b6eb77e06eaf);
+            
+        
+
+        circle_marker_b2aa9d058403698cc430c48ac84d3b03.bindPopup(popup_cd1810374fdab48966c56107f2bab555)
+        ;
+
+        
+    
+    
+            circle_marker_b2aa9d058403698cc430c48ac84d3b03.bindTooltip(
+                `<div>
+                     Saint-Germain-des-Prés
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_ed2803391ac3db8de443b2de27259a98.addTo(map_4a4fc21ac233c93bd67c212b5ac73850);
+        
+    
+            var feature_group_384e657bff4d7cba2c9ef94dc7869072 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_3ee231033c9c8721b0458b2f3205669b = L.polyline(
+                [[48.8449, 2.3735], [47.3782, 8.5402], [47.4502, 8.5616]],
+                {"bubblingMouseEvents": true, "color": "#14b8a6", "dashArray": "1", "dashOffset": null, "fill": false, "fillColor": "#14b8a6", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 3.5}
+            ).addTo(feature_group_384e657bff4d7cba2c9ef94dc7869072);
+        
+    
+            poly_line_3ee231033c9c8721b0458b2f3205669b.bindTooltip(
+                `<div>
+                     Day 9 · → Zürich
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_873dc6025189a2fb62bc4a847f2d156e = L.circleMarker(
+                [48.8449, 2.3735],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#14b8a6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_384e657bff4d7cba2c9ef94dc7869072);
+        
+    
+        var popup_efd76a0cee1618b187bfe0b4948e1c27 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b6c739f4f92eaa3c104d10a0f394f33b = $(`<div id="html_b6c739f4f92eaa3c104d10a0f394f33b" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#14b8a6;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 9 · → Zürich</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🚆 Paris Gare de Lyon</div>         <div style="font-size:12px;color:#555;line-height:1.6">~9 AM TGV Lyria to Zürich<br>~4 hour journey</div>     </div>     </div>`)[0];
+                popup_efd76a0cee1618b187bfe0b4948e1c27.setContent(html_b6c739f4f92eaa3c104d10a0f394f33b);
+            
+        
+
+        circle_marker_873dc6025189a2fb62bc4a847f2d156e.bindPopup(popup_efd76a0cee1618b187bfe0b4948e1c27)
+        ;
+
+        
+    
+    
+            circle_marker_873dc6025189a2fb62bc4a847f2d156e.bindTooltip(
+                `<div>
+                     Paris Gare de Lyon
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ed23a8e87d304d309fa2ab12f9cab226 = L.circleMarker(
+                [47.3782, 8.5402],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#14b8a6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_384e657bff4d7cba2c9ef94dc7869072);
+        
+    
+        var popup_e1261299b80dcae1d7738a3eec3d8d3e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e9297fab18cbf5eba27e5dfb4b09e4a3 = $(`<div id="html_e9297fab18cbf5eba27e5dfb4b09e4a3" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#14b8a6;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 9 · → Zürich</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🚆 Zürich HB</div>         <div style="font-size:12px;color:#555;line-height:1.6">Arrive 4:26 PM · S-Bahn to airport</div>     </div>     </div>`)[0];
+                popup_e1261299b80dcae1d7738a3eec3d8d3e.setContent(html_e9297fab18cbf5eba27e5dfb4b09e4a3);
+            
+        
+
+        circle_marker_ed23a8e87d304d309fa2ab12f9cab226.bindPopup(popup_e1261299b80dcae1d7738a3eec3d8d3e)
+        ;
+
+        
+    
+    
+            circle_marker_ed23a8e87d304d309fa2ab12f9cab226.bindTooltip(
+                `<div>
+                     Zürich HB
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f51d5c0ad91c75be19aa93372047b6e1 = L.circleMarker(
+                [47.366, 8.5456],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#14b8a6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_384e657bff4d7cba2c9ef94dc7869072);
+        
+    
+        var popup_9202e9cc7c3e3461f1ea923c2d1e50c0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2cc0db1cb396059c0f8b6b697a205df0 = $(`<div id="html_2cc0db1cb396059c0f8b6b697a205df0" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#14b8a6;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 9 · → Zürich</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">📍 Sechseläutenplatz</div>         <div style="font-size:12px;color:#555;line-height:1.6">Zürich lakefront · Opera house<br>Optional evening walk</div>     </div>     </div>`)[0];
+                popup_9202e9cc7c3e3461f1ea923c2d1e50c0.setContent(html_2cc0db1cb396059c0f8b6b697a205df0);
+            
+        
+
+        circle_marker_f51d5c0ad91c75be19aa93372047b6e1.bindPopup(popup_9202e9cc7c3e3461f1ea923c2d1e50c0)
+        ;
+
+        
+    
+    
+            circle_marker_f51d5c0ad91c75be19aa93372047b6e1.bindTooltip(
+                `<div>
+                     Sechseläutenplatz
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1ff5029c9628b4eef22cd38d4fe1132f = L.circleMarker(
+                [47.37, 8.54],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#14b8a6", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 2}
+            ).addTo(feature_group_384e657bff4d7cba2c9ef94dc7869072);
+        
+    
+        var popup_1ad42120e37c93216bf66571c648fb8d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_825ca14a99b3a1d041442bdae567ca0c = $(`<div id="html_825ca14a99b3a1d041442bdae567ca0c" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#14b8a6;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 9 · → Zürich</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🍽️ Co Chin Chin</div>         <div style="font-size:12px;color:#555;line-height:1.6">🍽 Dinner · Train ride there</div>     </div>     </div>`)[0];
+                popup_1ad42120e37c93216bf66571c648fb8d.setContent(html_825ca14a99b3a1d041442bdae567ca0c);
+            
+        
+
+        circle_marker_1ff5029c9628b4eef22cd38d4fe1132f.bindPopup(popup_1ad42120e37c93216bf66571c648fb8d)
+        ;
+
+        
+    
+    
+            circle_marker_1ff5029c9628b4eef22cd38d4fe1132f.bindTooltip(
+                `<div>
+                     Co Chin Chin
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0dba86493f363b67f723a07b10c4678e = L.circleMarker(
+                [47.4502, 8.5616],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#14b8a6", "fillOpacity": 0.85, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 3}
+            ).addTo(feature_group_384e657bff4d7cba2c9ef94dc7869072);
+        
+    
+        var popup_73b98314f31b30ff5653e844f68115a8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1eec3e6233d1f0e2bee4753940bf35b6 = $(`<div id="html_1eec3e6233d1f0e2bee4753940bf35b6" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#14b8a6;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 9 · → Zürich</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🏨 Zürich Airport Hotel</div>         <div style="font-size:12px;color:#555;line-height:1.6">🏨 Overnight · Rest & repack<br>Set TWO alarms for 04:30 AM!</div>     </div>     </div>`)[0];
+                popup_73b98314f31b30ff5653e844f68115a8.setContent(html_1eec3e6233d1f0e2bee4753940bf35b6);
+            
+        
+
+        circle_marker_0dba86493f363b67f723a07b10c4678e.bindPopup(popup_73b98314f31b30ff5653e844f68115a8)
+        ;
+
+        
+    
+    
+            circle_marker_0dba86493f363b67f723a07b10c4678e.bindTooltip(
+                `<div>
+                     Zürich Airport Hotel
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_4f5abd3ca52f7a0612b332f5078afb35 = L.marker(
+                [47.4502, 8.5616],
+                {
+}
+            ).addTo(feature_group_384e657bff4d7cba2c9ef94dc7869072);
+        
+    
+            var div_icon_9fe8fb947735496e2407e3e60e2d2b93 = L.divIcon({
+  "html": "\u003cdiv style=\"font-size:11px;font-weight:800;color:#14b8a6;text-shadow:1px 1px 3px white,-1px -1px 3px white,1px -1px 3px white,-1px 1px 3px white;white-space:nowrap;transform:translate(-50%,8px)\"\u003eZ\u00fcrich Airport Hotel\u003c/div\u003e",
+  "iconSize": [150, 20],
+  "iconAnchor": [75, 0],
+  "className": "empty",
+});
+        
+    
+                marker_4f5abd3ca52f7a0612b332f5078afb35.setIcon(div_icon_9fe8fb947735496e2407e3e60e2d2b93);
+            
+    
+            feature_group_384e657bff4d7cba2c9ef94dc7869072.addTo(map_4a4fc21ac233c93bd67c212b5ac73850);
+        
+    
+            var feature_group_e4a1b34775ce145b161dfa39425ad819 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_e8aeef50d2dbdd4b2c14373af9f24df2 = L.circleMarker(
+                [47.4502, 8.5616],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#64748b", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 7, "stroke": true, "weight": 2}
+            ).addTo(feature_group_e4a1b34775ce145b161dfa39425ad819);
+        
+    
+        var popup_56e09c5855a815f76219ce266d1b7e05 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9767bf5cd87a03ea3123f20fc6a0f25e = $(`<div id="html_9767bf5cd87a03ea3123f20fc6a0f25e" style="width: 100.0%; height: 100.0%;">     <div style="font-family:system-ui;min-width:200px;max-width:280px">         <div style="color:#64748b;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Day 10 · Fly Home</div>         <div style="font-size:15px;font-weight:800;margin-bottom:6px">🚆 Zürich Airport (ZRH)</div>         <div style="font-size:12px;color:#555;line-height:1.6">✈ 07:40 AM ZRH → ATL<br>🍫 Last Sprüngli chocolate!<br>~10-11 hrs · Bon voyage!</div>     </div>     </div>`)[0];
+                popup_56e09c5855a815f76219ce266d1b7e05.setContent(html_9767bf5cd87a03ea3123f20fc6a0f25e);
+            
+        
+
+        circle_marker_e8aeef50d2dbdd4b2c14373af9f24df2.bindPopup(popup_56e09c5855a815f76219ce266d1b7e05)
+        ;
+
+        
+    
+    
+            circle_marker_e8aeef50d2dbdd4b2c14373af9f24df2.bindTooltip(
+                `<div>
+                     Zürich Airport (ZRH)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_e4a1b34775ce145b161dfa39425ad819.addTo(map_4a4fc21ac233c93bd67c212b5ac73850);
+        
+    
+            var layer_control_075db5359c024d9895a4ccb57aea48ba_layers = {
+                base_layers : {
+                    "Terrain" : tile_layer_3add63d17be284799d3e4ea422ecd218,
+                    "Light" : tile_layer_9243e23541894be634a5f027da40122a,
+                    "Dark" : tile_layer_52f696228b21969541501cc696e583b0,
+                },
+                overlays :  {
+                    "\u003cspan style=\"color:#f43f5e;font-weight:700\"\u003e\u25cf\u003c/span\u003e Day 1 \u00b7 Zermatt" : feature_group_6144125f220c9f8cc88034ac2245f096,
+                    "\u003cspan style=\"color:#f97316;font-weight:700\"\u003e\u25cf\u003c/span\u003e Day 2 \u00b7 Glacier Express" : feature_group_6958e2a988abfaaedc94129c6535a7cf,
+                    "\u003cspan style=\"color:#eab308;font-weight:700\"\u003e\u25cf\u003c/span\u003e Day 3 \u00b7 \u2192 Lucerne" : feature_group_984933a803cc88aa216dcd8ad5bede96,
+                    "\u003cspan style=\"color:#22c55e;font-weight:700\"\u003e\u25cf\u003c/span\u003e Day 4 \u00b7 Mt. Pilatus" : feature_group_deb7305e4357272dd42576aafe26bc23,
+                    "\u003cspan style=\"color:#06b6d4;font-weight:700\"\u003e\u25cf\u003c/span\u003e Day 5 \u00b7 Jungfraujoch" : feature_group_927301a69071e998df66c9b53a1cccc9,
+                    "\u003cspan style=\"color:#8b5cf6;font-weight:700\"\u003e\u25cf\u003c/span\u003e Day 6 \u00b7 M\u00fcrren" : feature_group_7b02f9b09d69c1eb5d182958c35da79a,
+                    "\u003cspan style=\"color:#ec4899;font-weight:700\"\u003e\u25cf\u003c/span\u003e Day 7 \u00b7 \u2192 Paris" : feature_group_bed0b724f711e7a296d4cf6b7ba2ccd3,
+                    "\u003cspan style=\"color:#6366f1;font-weight:700\"\u003e\u25cf\u003c/span\u003e Day 8 \u00b7 Paris" : feature_group_ed2803391ac3db8de443b2de27259a98,
+                    "\u003cspan style=\"color:#14b8a6;font-weight:700\"\u003e\u25cf\u003c/span\u003e Day 9 \u00b7 \u2192 Z\u00fcrich" : feature_group_384e657bff4d7cba2c9ef94dc7869072,
+                    "\u003cspan style=\"color:#64748b;font-weight:700\"\u003e\u25cf\u003c/span\u003e Day 10 \u00b7 Fly Home" : feature_group_e4a1b34775ce145b161dfa39425ad819,
+                },
+            };
+            let layer_control_075db5359c024d9895a4ccb57aea48ba = L.control.layers(
+                layer_control_075db5359c024d9895a4ccb57aea48ba_layers.base_layers,
+                layer_control_075db5359c024d9895a4ccb57aea48ba_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_4a4fc21ac233c93bd67c212b5ac73850);
+
+        
+    
+            map_4a4fc21ac233c93bd67c212b5ac73850.fitBounds(
+                [[47.4502, 8.5616], [47.3782, 8.5402], [46.0207, 7.7491], [45.9833, 7.7858], [46.0195, 7.747], [46.0207, 7.7491], [46.2944, 7.8828], [46.3153, 7.9876], [46.633, 8.594], [46.6595, 8.6714], [46.7034, 8.8533], [46.4908, 9.8355], [46.494, 9.84], [46.5813, 9.6748], [46.8499, 9.5329], [47.3782, 8.5402], [47.0502, 8.3093], [47.0518, 8.3074], [47.0585, 8.3106], [46.9489, 8.2741], [46.9788, 8.2525], [47.035, 8.2759], [46.99, 8.26], [47.056, 8.305], [46.87, 8.14], [46.6908, 7.8694], [46.5936, 7.9084], [46.6083, 7.9221], [46.5849, 7.9606], [46.5472, 7.9853], [46.56, 7.902], [46.559, 7.8924], [46.5567, 7.8342], [46.594, 7.906], [46.5936, 7.9084], [46.948, 7.4474], [47.5476, 7.5897], [48.8449, 2.3735], [48.8867, 2.3431], [48.885, 2.339], [48.8584, 2.2945], [48.8584, 2.2945], [48.8606, 2.3376], [48.8616, 2.3333], [48.8649, 2.3289], [48.8645, 2.328], [48.8566, 2.3622], [48.858, 2.358], [48.8575, 2.3555], [48.853, 2.3499], [48.8554, 2.345], [48.851, 2.335], [48.854, 2.3338], [48.8449, 2.3735], [47.3782, 8.5402], [47.366, 8.5456], [47.37, 8.54], [47.4502, 8.5616], [47.4502, 8.5616]],
+                {"padding": [30, 30]}
+            );
+        
+</script>
+</html>
